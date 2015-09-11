@@ -1,5 +1,5 @@
 from django.db import models
-
+from cloudProject.applications.Competition.models import Competition
 from django.utils.encoding import smart_unicode
 
 class Video(models.Model):
@@ -16,7 +16,7 @@ class Video(models.Model):
     originalVideoPath = models.CharField(max_length=255)
     convertedVideoPath = models.CharField(max_length=255)
     state = models.CharField(max_length=2,choices=VIDEO_STATES)
-    #competition = models.ForeignKey(Competition)
+    competition = models.ForeignKey(Competition)
 
     def __unicode__(self):
         title = "%s %s %s" % (self.competition,smart_unicode(self.title), self.clientfirtsName, self.clientLastName)
