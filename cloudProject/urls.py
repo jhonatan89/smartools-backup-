@@ -8,4 +8,6 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', include('cloudProject.applications.Home.urls')),
+    url(r'^account/', include('cloudProject.applications.Account.urls')),
+    url(r'^competition/', include('cloudProject.applications.Competition.urls')),
 ]

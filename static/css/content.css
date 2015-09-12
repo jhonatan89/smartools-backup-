@@ -1,0 +1,506 @@
+.GralCont{
+	position:relative;
+	display:inline-block;
+	width:100%;
+}
+
+.GralCont .GCIn{
+	width:1040px;
+	margin:0 auto;
+}
+
+.GralCont .GCIn .GCInFL{
+	float:left;
+	width:100%;
+	margin:0;
+}
+
+.Contenido{
+	float:left;
+	width:100%;
+	margin:20px 0 50px 0;
+	padding:15px 1.5%;
+	background-color:#FFF;
+	border-radius:3px;
+	border:none;
+	box-shadow:0 1px 4px rgba(0,0,0,0.1);
+}
+.MarkerSecc{
+	float:left;
+	width:103.1%;
+	line-height:18px;
+	font-size:13px;
+	text-shadow:0 1px 0 rgba(0,0,0,0.2);
+	margin:-16px 0 15px -1.5%;
+	padding:5px 1.8% 2px 1.2%;
+	font-family:'Proxima Light',sans-serif;
+	color:#EEE;
+	border-radius:3px 3px 0 0;
+	border-top:1px solid #888;
+	border-bottom:1px solid #888;
+	background-color:rgb(62, 68, 76);
+	}
+
+.SpV01,.SpV05,.SpV10,.SpV20,.SpVx,.SpVLine,.SpVLinepoint,.SpVLineG,.SpVLineW,.SpVLineWpoint{
+	position:relative;
+	display:inline-block;
+	width:100%;
+}
+
+.SpV01{
+	height:1px;
+	margin:0;
+}
+
+.SpV05{
+	height:5px;
+	margin:0;
+}
+
+.SpV10{
+	height:10px;
+	margin:0;
+}
+
+.SpV20{
+	height:20px;
+	margin:0;
+}
+
+.SpVx{
+	margin:0;
+}
+
+.SpVLine{
+	height:1px;
+	border-bottom:1px solid #CCC;
+}
+
+.SpVLinepoint{
+	height:1px;
+	border-bottom:1px dashed #CCC;
+}
+
+.SpVLineG{
+	height:1px;
+	border-top:1px solid #DDD;
+}
+
+.SpVLineB{
+	height:1px;
+	background:#000;
+}
+
+.SpVLineW{
+	height:1px;
+	border-bottom:1px solid #FFF;
+}
+
+.SpVLineWpoint{
+	height:1px;
+	border-bottom:1px dashed #FFF;
+}
+
+
+.HorznX100 {
+    width: 100%;
+}
+.HorznX01, .HorznX02, .HorznX03, .HorznX04, .HorznX05, .HorznX06, .HorznX07, .HorznX08, .HorznX09, .HorznX10, .HorznX11, .HorznX12, .HorznX13, .HorznX14, .HorznX15, .HorznX16, .HorznX17, .HorznX18, .HorznX19, .HorznX20, .HorznX21, .HorznX22, .HorznX23, .HorznX24, .HorznX25, .HorznX26, .HorznX27, .HorznX28, .HorznX29, .HorznX30, .HorznX31, .HorznX32, .HorznX33, .HorznX34, .HorznX35, .HorznX36, .HorznX37, .HorznX38, .HorznX39, .HorznX40, .HorznX41, .HorznX42, .HorznX43, .HorznX44, .HorznX45, .HorznX46, .HorznX47, .HorznX48, .HorznX49, .HorznX50, .HorznX51, .HorznX52, .HorznX53, .HorznX54, .HorznX55, .HorznX56, .HorznX57, .HorznX58, .HorznX59, .HorznX60, .HorznX61, .HorznX62, .HorznX63, .HorznX64, .HorznX65, .HorznX66, .HorznX67, .HorznX68, .HorznX69, .HorznX70, .HorznX71, .HorznX72, .HorznX73, .HorznX74, .HorznX75, .HorznX76, .HorznX77, .HorznX78, .HorznX79, .HorznX80, .HorznX81, .HorznX82, .HorznX83, .HorznX84, .HorznX85, .HorznX86, .HorznX87, .HorznX88, .HorznX89, .HorznX90, .HorznX91, .HorznX92, .HorznX93, .HorznX94, .HorznX95, .HorznX96, .HorznX97, .HorznX98, .HorznX99, .HorznX100 {
+    float: left;
+}
+
+.HorznX01{
+	width:1%;
+}
+
+.HorznX02{
+	width:2%;
+}
+
+.HorznX03{
+	width:3%;
+}
+
+.HorznX04{
+	width:4%;
+}
+
+.HorznX05{
+	width:5%;
+}
+
+.HorznX06{
+	width:6%;
+}
+
+.HorznX07{
+	width:7%;
+}
+
+.HorznX08{
+	width:8%;
+}
+
+.HorznX09{
+	width:9%;
+}
+
+.HorznX10{
+	width:10%;
+}
+
+.HorznX11{
+	width:11%;
+}
+
+.HorznX12{
+	width:12%;
+}
+
+.HorznX13{
+	width:13%;
+}
+
+.HorznX14{
+	width:14%;
+}
+
+.HorznX15{
+	width:15%;
+}
+
+.HorznX16{
+	width:16%;
+}
+
+.HorznX17{
+	width:17%;
+}
+
+.HorznX18{
+	width:18%;
+}
+
+.HorznX19{
+	width:19%;
+}
+
+.HorznX20{
+	width:20%;
+}
+
+.HorznX21{
+	width:21%;
+}
+
+.HorznX22{
+	width:22%;
+}
+
+.HorznX23{
+	width:23%;
+}
+
+.HorznX24{
+	width:24%;
+}
+
+.HorznX25{
+	width:25%;
+}
+
+.HorznX26{
+	width:26%;
+}
+
+.HorznX27{
+	width:27%;
+}
+
+.HorznX28{
+	width:28%;
+}
+
+.HorznX29{
+	width:29%;
+}
+
+.HorznX30{
+	width:30%;
+}
+
+.HorznX31{
+	width:31%;
+}
+
+.HorznX32{
+	width:32%;
+}
+
+.HorznX33{
+	width:33%;
+}
+
+.HorznX34{
+	width:34%;
+}
+
+.HorznX35{
+	width:35%;
+}
+
+.HorznX36{
+	width:36%;
+}
+
+.HorznX37{
+	width:37%;
+}
+
+.HorznX38{
+	width:38%;
+}
+
+.HorznX39{
+	width:39%;
+}
+
+.HorznX40{
+	width:40%;
+}
+
+.HorznX41{
+	width:41%;
+}
+
+.HorznX42{
+	width:42%;
+}
+
+.HorznX43{
+	width:43%;
+}
+
+.HorznX44{
+	width:44%;
+}
+
+.HorznX45{
+	width:45%;
+}
+
+.HorznX46{
+	width:46%;
+}
+
+.HorznX47{
+	width:47%;
+}
+
+.HorznX48{
+	width:48%;
+}
+
+.HorznX49{
+	width:49%;
+}
+
+.HorznX50{
+	width:50%;
+}
+
+.HorznX51{
+	width:51%;
+}
+
+.HorznX52{
+	width:52%;
+}
+
+.HorznX53{
+	width:53%;
+}
+
+.HorznX54{
+	width:54%;
+}
+
+.HorznX55{
+	width:55%;
+}
+
+.HorznX56{
+	width:56%;
+}
+
+.HorznX57{
+	width:57%;
+}
+
+.HorznX58{
+	width:58%;
+}
+
+.HorznX59{
+	width:59%;
+}
+
+.HorznX60{
+	width:60%;
+}
+
+.HorznX61{
+	width:61%;
+}
+
+.HorznX62{
+	width:62%;
+}
+
+.HorznX63{
+	width:63%;
+}
+
+.HorznX64{
+	width:64%;
+}
+
+.HorznX65{
+	width:65%;
+}
+
+.HorznX66{
+	width:66%;
+}
+
+.HorznX67{
+	width:67%;
+}
+
+.HorznX68{
+	width:68%;
+}
+
+.HorznX69{
+	width:69%;
+}
+
+.HorznX70{
+	width:70%;
+}
+
+.HorznX71{
+	width:71%;
+}
+
+.HorznX72{
+	width:72%;
+}
+
+.HorznX73{
+	width:73%;
+}
+
+.HorznX74{
+	width:74%;
+}
+
+.HorznX75{
+	width:75%;
+}
+
+.HorznX76{
+	width:76%;
+}
+
+.HorznX77{
+	width:77%;
+}
+
+.HorznX78{
+	width:78%;
+}
+
+.HorznX79{
+	width:79%;
+}
+
+.HorznX80{
+	width:80%;
+}
+
+.HorznX81{
+	width:81%;
+}
+
+.HorznX82{
+	width:82%;
+}
+
+.HorznX83{
+	width:83%;
+}
+
+.HorznX84{
+	width:84%;
+}
+
+.HorznX85{
+	width:85%;
+}
+
+.HorznX86{
+	width:86%;
+}
+
+.HorznX87{
+	width:87%;
+}
+
+.HorznX88{
+	width:88%;
+}
+
+.HorznX89{
+	width:89%;
+}
+
+.HorznX90{
+	width:90%;
+}
+
+.HorznX91{
+	width:91%;
+}
+
+.HorznX92{
+	width:92%;
+}
+
+.HorznX93{
+	width:93%;
+}
+
+.HorznX94{
+	width:94%;
+}
+
+.HorznX95{
+	width:95%;
+}
+
+.HorznX96{
+	width:96%;
+}
+
+.HorznX97{
+	width:97%;
+}
+
+.HorznX98{
+	width:98%;
+}
+
+.HorznX99{
+	width:99%;
+}
