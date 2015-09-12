@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^$', include('cloudProject.applications.Home.urls')),
     url(r'^account/', include('cloudProject.applications.Account.urls')),
     url(r'^competition/', include('cloudProject.applications.Competition.urls')),
+    url(r'^upload/', include('cloudProject.applications.Video.urls')),
 ]

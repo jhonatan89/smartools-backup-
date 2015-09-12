@@ -10,7 +10,7 @@ class Competition(models.Model):
     endDate =models.DateTimeField(auto_now=False, auto_now_add=True)
     description = models.CharField(max_length=255)
     url = models.CharField(max_length=255)
-    company = models.ForeignKey(Company)
+    company = models.ForeignKey(Company, null=True)
 
     def __unicode__(self):
         title = "%s" % (smart_unicode(self.name))
