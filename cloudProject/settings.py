@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'cloudProject.applications.Video',
     'cloudProject.applications.Company',
     'cloudProject.applications.Competition',
+    'bootstrapform',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -108,7 +109,8 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+#ruta donde guardaremos los archivos de media
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
