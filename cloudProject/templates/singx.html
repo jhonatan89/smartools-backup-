@@ -1,0 +1,95 @@
+
+<!-- Modal SING IN HTML -->
+    <div id="myModals" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Sing in</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" id="formsignin">
+                        {% csrf_token %}
+
+                        <div class="form-group has-feedback">
+                            <label class="control-label">Username</label>
+                            <input type="text" class="form-control"  id="username" placeholder="Username" required />
+                            <i class="glyphicon glyphicon-user form-control-feedback"></i>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="control-label">Password</label>
+                            <input type="password" class="form-control"  id="password" placeholder="Password" required/>
+                            <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </form>
+                    <div id="msg">
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <input id="submitsingin" type="submit" class="btn btn-info" value="SingIn">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+   </div>
+
+
+
+        <!-- Modal SING UP HTML -->
+    <div id="myModalSingup" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Sing Up</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" id="formsignup">
+                        {% csrf_token %}
+
+                        <div class="form-group has-feedback">
+                            <label class="control-label">Company Name</label>
+                            <input type="text" class="form-control" name="companyname" id="companynameSU" placeholder="Company Name" required/>
+                            <i class="glyphicon glyphicon-th-large form-control-feedback"></i>
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <label class="control-label">Username</label>
+                            <input type="text" class="form-control" name="username" id="usernameSU" placeholder="Username" />
+                            <i class="glyphicon glyphicon-user form-control-feedback"></i>
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <label class="control-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="EmailSU" />
+                            <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <label class="control-label">Password</label>
+                            <input type="password" class="form-control" id="passwordSU" placeholder="Password" />
+                            <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <label class="control-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmpasswordSU" placeholder="Corfirm Password" />
+                            <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+                        </div>
+                    </form>
+                    <div id="msgSU">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <input id="submitsignup" type="submit" class="btn btn-info" value="Sing Up">
+                </div>
+
+            </div>
+        </div>
+    </div>
+

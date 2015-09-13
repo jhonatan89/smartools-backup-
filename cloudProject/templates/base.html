@@ -8,6 +8,7 @@
     <link href="http://bootswatch.com/slate/bootstrap.min.css" rel="stylesheet" type="text/css"  />
     <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/formvalidator.js' %}"></script>
     <script src="{% static 'js/account.js' %}"></script>
     <script type="text/javascript">
 $(document).ready(function(){
@@ -69,14 +70,14 @@ $(document).ready(function(){
           {% if "Company" in user.groups.all|join:";" %}
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><B>{{user.first_name}}</B><span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="/account/singout">Sing out</a></li>
+            <li><a href="/account/signout">Sing out</a></li>
           </ul>
            {% else %}
            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign up <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a data-toggle="modal" href="#form-content" >Sign up</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#myModalSingup" >Sign up</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#" data-toggle="modal" data-target="#myModal">Sign in</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#myModals">Sign in</a></li>
            {% endif %}
         </li>
       </ul>
@@ -97,39 +98,7 @@ $(document).ready(function(){
   </div>
 </div>
 
- <!-- Modal HTML -->
-    <div id="myModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">Sing in</h4>
-                </div>
-                <div class="modal-body">
-                    <form role="form" action ="account/singin">
-                        {% csrf_token %}
-
-                        <div class="form-group has-feedback">
-                            <label class="control-label">Username</label>
-                            <input type="text" class="form-control" id="username" placeholder="Username" />
-                            <i class="glyphicon glyphicon-user form-control-feedback"></i>
-                        </div>
-                        <div class="form-group has-feedback">
-                            <label class="control-label">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Password" />
-                            <i class="glyphicon glyphicon-lock form-control-feedback"></i>
-                        </div>
-                    </form>
-                    <div id="error">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <input id="submitmodal" type="submit" class="btn btn-info" value="Submit Button">
-                </div>
-
-            </div>
-        </div>
-    </div>
+{% include "singx.html" %}
 
 
 </body>
