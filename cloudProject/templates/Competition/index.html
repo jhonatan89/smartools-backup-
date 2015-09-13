@@ -11,20 +11,75 @@
                     <!-- Contenido -->
                     <div class="Contenido">
 
-                        <div class="MarkerSecc">About your competitions</div>
+                        <div class="MarkerSecc">You active competitions</div>
                         <div class="SpV10"></div>
 
+
                         <div class="HorznX100">
+                            {% if competitions|length < 1 %}
+                            <div align="center">
+                                <button type="button" class="btn btn-default" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true">  Add</span>
+                                </button>
+                            </div>
+   ...
+                            {% endif %}
+                            {% for competition in competitions %}
+                            <div class="panel panel-default">
+                              <div class="panel-body">
+                                {{ competition.name|upper }}
+                              </div>
+                              <div class="panel-footer">
+                                  <div class="SpV01"></div>
+                                      <div class="HorznX20">
+                                        <img src="{{ competition.image }}" class="img-rounded"  width="150" height="80">
+                                      </div>
+
+                                      <div class="HorznX60">
+                                        <strong>Description:</strong> {{ competition.description }}</br>
+                                        <strong>Opening Time:</strong> {{ competition.startDate }}</br>
+                                        <strong>Closing Time:</strong> {{ competition.startDate }}<br>
+                                        <strong>Url:</strong> {{ competition.url }}<br>
+                                      </div>
+                                      <div class="HorznX10">
+                                          <button type="button" class="btn btn-default" aria-label="Left Align">
+                                              <span class="glyphicon glyphicon-edit" aria-hidden="true">  Edit</span>
+                                            </button></br></br>
+
+                                      </div>
+                                      <div class="HorznX10">
+                                          <button type="button" class="btn btn-default" aria-label="Left Align">
+                                              <span class="glyphicon glyphicon-stop" aria-hidden="true">  Finish</span>
+                                            </button>
+
+                                      </div>
+                                  <div class="SpV01"></div>
+
+                              </div>
+                            </div>
+
+                            {% endfor %}
+                            <div align="center">
+                            <div class="pagination">
+                                <span class="step-links">
+                                    {% if competitions.has_previous %}
+                                        <a href="?page={{ contacts.previous_page_number }}">previous</a>
+                                    {% endif %}
+
+                                    <span class="current">
+                                        Page {{ competitions.number }} of {{ competitions.paginator.num_pages }}.
+                                    </span>
+
+                                    {% if competitions.has_next %}
+                                        <a href="?page={{ competitions.next_page_number }}">next</a>
+                                    {% endif %}
+                                </span>
+                            </div></div>
+
+
                         </div>
-
-
                     </div>
-
             </div>
-
-
-
     </div>
-
 
 {% endblock%}
