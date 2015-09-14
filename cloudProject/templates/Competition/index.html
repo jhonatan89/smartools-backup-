@@ -1,5 +1,6 @@
 {% extends 'base.html'%}
 {% load staticfiles %}
+{% load bootstrap %}
 
 {% block content %}
         <link rel="stylesheet" href="{% static 'css/content.css' %}">
@@ -18,7 +19,7 @@
                         <div class="HorznX100">
                             {% if competitions|length < 1 %}
                             <div align="center">
-                                <button type="button" class="btn btn-default" aria-label="Left Align">
+                                <button type="button" data-toggle="modal" data-target="#myModals" class="btn btn-default" aria-label="Left Align">
                                     <span class="glyphicon glyphicon-plus" aria-hidden="true">  Add</span>
                                 </button>
                             </div>
@@ -32,7 +33,7 @@
                               <div class="panel-footer">
                                   <div class="SpV01"></div>
                                       <div class="HorznX20">
-                                        <img src="{{ competition.image }}" class="img-rounded"  width="150" height="80">
+                                        <img src="{% static competition.image %}" class="img-rounded"  width="150" height="80">
                                       </div>
 
                                       <div class="HorznX60">
@@ -81,5 +82,34 @@
                     </div>
             </div>
     </div>
+
+<div id="myModals" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Create new competition</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" class="col-lg-12"  enctype="multipart/form-data" method="post" action="">
+                        {% csrf_token %}
+                        {{ form|bootstrap}}
+
+
+
+
+                </div>
+                    <div class="modal-footer">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <input id="submitnewcompetition" type="submit" class="btn btn-info" value="Create">
+                    </div>
+                        </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock%}

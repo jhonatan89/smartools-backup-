@@ -6,7 +6,7 @@ from django.utils.encoding import smart_unicode
 
 class Competition(models.Model):
     name = models.CharField(max_length=200)
-    image = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='ImageCompetitions/%Y/%m/%d')
     startDate =models.DateTimeField(auto_now=False, auto_now_add=True)
     endDate =models.DateTimeField(auto_now=False, auto_now_add=True)
     description = models.CharField(max_length=255)

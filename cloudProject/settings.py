@@ -41,8 +41,13 @@ INSTALLED_APPS = (
     'cloudProject.applications.Video',
     'cloudProject.applications.Company',
     'cloudProject.applications.Competition',
+    'cloudProject.applications.Account',
     'bootstrapform',
 )
+
+from django.core.urlresolvers import reverse_lazy
+FORBIDDEN_URL = reverse_lazy('error/forbidden')
+LOGIN_URL = reverse_lazy('Account')
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -119,4 +124,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'media'),
 )

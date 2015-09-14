@@ -1,4 +1,4 @@
-from django.shortcuts import  HttpResponseRedirect,HttpResponse
+from django.shortcuts import  HttpResponseRedirect,HttpResponse,render_to_response
 from django.contrib import auth
 from django.contrib.auth.models import User, Group
 from django.views.generic import TemplateView
@@ -12,6 +12,11 @@ def signout(request):
     auth.logout(request)
     # Redirect to a success page.
     return HttpResponseRedirect("/")
+
+def forbidden(request):
+    auth.logout(request)
+    # Redirect to a success page.
+    return render_to_response("Error/forbidden.html")
 
 
 class signin(TemplateView):

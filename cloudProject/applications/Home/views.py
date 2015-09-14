@@ -4,3 +4,6 @@ from django.shortcuts import render_to_response, RequestContext
 
 def index(request):
     return render_to_response('Home/index.html', context=RequestContext(request))
+
+def forbidden(request):
+    return render_to_response('Home/index.html', context=RequestContext(request))
