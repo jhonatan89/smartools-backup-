@@ -23,6 +23,8 @@
                                     <span class="glyphicon glyphicon-plus" aria-hidden="true">  Add</span>
                                 </button>
                             </div>
+                            {% else %}
+                            <a href="#" data-toggle="modal" data-target="#myModals">Create new competition</a>
    ...
                             {% endif %}
                             {% for competition in competitions %}
