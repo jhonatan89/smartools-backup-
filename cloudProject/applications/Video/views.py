@@ -8,7 +8,7 @@ def upload_video(request):
     if request.method == 'POST':
         form = UploadVideo(request.POST, request.FILES)
         if form.is_valid():
-            new_video = Video(title=request.POST['title'], video=request.FILES['video'], clientfirtsName=request.POST['clientfirtsName'],
+            new_video = Video(title=request.POST['title'], originalVideoPath=request.FILES['originalVideoPath'], clientfirtsName=request.POST['clientfirtsName'],
                               clientLastName=request.POST['clientlastName'], description=request.POST['description'],
                               clientEmail=request.POST['clientEmail'])
             new_video.save(form)

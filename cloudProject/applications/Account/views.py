@@ -9,17 +9,18 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 
 def signout(request):
+
     auth.logout(request)
-    # Redirect to a success page.
+
     return HttpResponseRedirect("/")
 
 def forbidden(request):
-    auth.logout(request)
-    # Redirect to a success page.
+
     return render_to_response("Error/forbidden.html")
 
 
 class signin(TemplateView):
+
     def post(self,request,*args, **kwargs):
         diccionario={}
 
@@ -41,16 +42,20 @@ class signin(TemplateView):
             return HttpResponse(json.dumps(diccionario),content_type='application/json')
 
 class signup(TemplateView):
+
     def post(self,request,*args, **kwargs):
+
         diccionario={}
 
         username = request.POST.get('username')
 
         if User.objects.filter(username=username).exists():
+
             diccionario['msg'] = 'USEREXIST'
+
             return HttpResponse(json.dumps(diccionario),content_type='application/json')
         else:
-            print("grabar")
+
             password = request.POST.get('password')
             email = request.POST.get('email')
             first_name = request.POST.get('companyname')
@@ -67,6 +72,7 @@ class signup(TemplateView):
             auth.login(request, user)
 
             diccionario['msg'] = 'OK'
+
             return HttpResponse(json.dumps(diccionario),content_type='application/json')
 
 

@@ -42,7 +42,7 @@
                                         <strong>Description:</strong> {{ competition.description }}</br>
                                         <strong>Opening Time:</strong> {{ competition.startDate }}</br>
                                         <strong>Closing Time:</strong> {{ competition.startDate }}<br>
-                                        <strong>Url:</strong> {{ competition.url }}<br>
+                                        <strong>Url:</strong> <a href="{{ competition.get_competition_url }}">{{ competition.get_competition_url }}</a><br>
                                       </div>
                                       <div class="HorznX10">
                                           <button type="button" class="btn btn-default" aria-label="Left Align">
@@ -51,10 +51,13 @@
 
                                       </div>
                                       <div class="HorznX10">
-                                          <button type="button" class="btn btn-default" aria-label="Left Align">
+                                          <form name="submitForm" method="POST" action="{{competition.get_finish_competition_url}}">
+                                              {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger" aria-label="Left Align">
                                               <span class="glyphicon glyphicon-stop" aria-hidden="true">  Finish</span>
                                             </button>
 
+                                          </form>
                                       </div>
                                   <div class="SpV01"></div>
 

@@ -6,5 +6,5 @@ class UploadVideo(django.forms.Form):
     clientfirtsName = django.forms.CharField(label='Your First Name')
     clientlastName = django.forms.CharField(label='Your Last Name')
     clientEmail = django.forms.CharField(label='Your email')
-    video = django.forms.FileField(label='Choose video')
+    originalVideoPath = django.forms.FileField(label='Choose video')
     description = django.forms.CharField(label='Add a description', max_length=500, widget=django.forms.Textarea)
