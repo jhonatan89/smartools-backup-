@@ -1,6 +1,7 @@
 from django.db import models
 from cloudProject.applications.Company.models import Company
 from django.contrib.auth.models import User
+import platform
 
 from django.utils.encoding import smart_unicode
 
@@ -18,3 +19,11 @@ class Competition(models.Model):
     def __unicode__(self):
         title = "%s" % (smart_unicode(self.name))
         return title
+
+    def get_competition_url(self):
+        #return "http://" + platform.node() + ":8000" + "/competitions/%s/" % (self.id)
+        return "http://127.0.0.1:8000" + "/competitions/%s/" % (self.id)
+
+    def get_finish_competition_url(self):
+        #return "http://" + platform.node() + ":8000" + "/competitions/%s/" % (self.id)
+        return "/competitions/%s/finish/" % (self.id)

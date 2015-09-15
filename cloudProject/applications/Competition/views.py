@@ -1,6 +1,9 @@
-from django.shortcuts import render_to_response, RequestContext,redirect
+from django.shortcuts import render_to_response, RequestContext,redirect,HttpResponseRedirect
 from django.db.models import Q
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
+from django.views.generic import TemplateView
+
+import platform
 
 #Impor auth
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -26,7 +29,7 @@ def index(request):
 
     competitions_list = Competition.objects.filter(Q(company=company) & Q(active=True))
 
-    paginator = Paginator(competitions_list, 1)
+    paginator = Paginator(competitions_list, 3)
 
     page = request.GET.get('page')
 
@@ -54,10 +57,22 @@ def index(request):
                                           active=True,
                                           company=company)
             new_competition.save(form)
-            return redirect("index")
+            new_competition.url="http://" + platform.node() + ":8000/competitions/" + str(new_competition.id)
+            new_competition.save()
 
+            return HttpResponseRedirect("/competitions")
 
     return render_to_response('Competition/index.html', ctx, context_instance=RequestContext(request))
+
+class finish(TemplateView):
+
+    def post(self,request,id_competition):
+
+        c = Competition.objects.get(id=id_competition)
+        c.active = False
+        c.save()
+
+        return HttpResponseRedirect("/competitions")
 
 
 

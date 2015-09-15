@@ -19,7 +19,7 @@ $(document).ready(function () {
             url: "account/signin/",
             data: { csrfmiddlewaretoken: csrftoken, username: u, password: p  },
             success: function(msg){
-                $(location).attr('href', '/competition');
+                $(location).attr('href', '/competitions');
             },
             error: function(data){
                 console.log(data);
@@ -50,7 +50,7 @@ $(document).ready(function () {
                 console.log(msg);
 
                 if (msg.msg =="OK"){
-                    $(location).attr('href', '/competition');
+                    $(location).attr('href', '/competitions');
                 }
 
                 if (msg.msg =="USEREXIST"){
