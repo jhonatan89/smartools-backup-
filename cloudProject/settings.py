@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'cloudProject.applications.Competition',
     'cloudProject.applications.Account',
     'bootstrapform',
+    'kronos',
 )
 
 from django.core.urlresolvers import reverse_lazy
