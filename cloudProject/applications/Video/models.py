@@ -1,6 +1,8 @@
 from django.db import models
-from cloudProject.applications.Competition.models import Competition
 from django.utils.encoding import smart_unicode
+
+from cloudProject.applications.Competition.models import Competition
+
 
 class Video(models.Model):
     VIDEO_STATES = (
@@ -21,3 +23,6 @@ class Video(models.Model):
     def __unicode__(self):
         title = "%s %s %s" % (self.competition,smart_unicode(self.title), self.clientfirtsName, self.clientLastName)
         return title
+
+    def file_name(self):
+        return self.originalVideoPath.name
