@@ -1,6 +1,5 @@
 {% extends 'base.html'%}
 {% load staticfiles %}
-{% load bootstrap %}
 
 {% block content %}
         <link rel="stylesheet" href="{% static 'css/content.css' %}">
@@ -41,14 +40,12 @@
                                       <div class="HorznX60">
                                         <strong>Description:</strong> {{ competition.description }}</br>
                                         <strong>Opening Time:</strong> {{ competition.startDate }}</br>
-                                        <strong>Closing Time:</strong> {{ competition.startDate }}<br>
                                         <strong>Url:</strong> <a href="{{ competition.get_competition_url }}">{{ competition.get_competition_url }}</a><br>
                                       </div>
                                       <div class="HorznX10">
-                                          <button type="button" class="btn btn-default" aria-label="Left Align">
-                                              <span class="glyphicon glyphicon-edit" aria-hidden="true">  Edit</span>
-                                            </button></br></br>
-
+                                          <a href="#" data-toggle="modal" data-target="#editcompetition{{forloop.counter}}" class="btn btn-info" role="button">
+                                             <span class="glyphicon glyphicon-edit" aria-hidden="true">  Edit</span>
+                                          </a>
                                       </div>
                                       <div class="HorznX10">
                                           <form name="submitForm" method="POST" action="{{competition.get_finish_competition_url}}">
@@ -63,6 +60,7 @@
 
                               </div>
                             </div>
+                            {% include "Competition/editcompetitionmodal.html" %}
 
                             {% endfor %}
                             <div align="center">
@@ -88,33 +86,6 @@
             </div>
     </div>
 
-<div id="myModals" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">Create new competition</h4>
-                </div>
-                <div class="modal-body">
-                    <form role="form" class="col-lg-12"  enctype="multipart/form-data" method="post" action="">
-                        {% csrf_token %}
-                        {{ form|bootstrap}}
-
-
-
-
-                </div>
-                    <div class="modal-footer">
-                    <div class="form-group">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <input id="submitnewcompetition" type="submit" class="btn btn-info" value="Create">
-                    </div>
-                        </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
+{% include "Competition/newcompetitionmodal.html" %}
 
 {% endblock%}

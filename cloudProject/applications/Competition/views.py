@@ -1,9 +1,11 @@
 from django.shortcuts import render_to_response, RequestContext,redirect,HttpResponseRedirect
 from django.db.models import Q
+from django.utils.timezone import utc
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
+from django.core.mail import send_mail
 from django.views.generic import TemplateView
 
-import platform
+from datetime import datetime
 
 #Impor auth
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -57,7 +59,7 @@ def index(request):
                                           active=True,
                                           company=company)
             new_competition.save(form)
-            new_competition.url="http://" + platform.node() + ":8000/competitions/" + str(new_competition.id)
+            new_competition.url="/competitions/" + str(new_competition.id)
             new_competition.save()
 
             return HttpResponseRedirect("/competitions")
@@ -69,11 +71,24 @@ class finish(TemplateView):
     def post(self,request,id_competition):
 
         c = Competition.objects.get(id=id_competition)
+        c.endDate=datetime.utcnow().replace(tzinfo=utc)
         c.active = False
         c.save()
 
         return HttpResponseRedirect("/competitions")
 
+class edit(TemplateView):
+
+    def post(self,request,id_competition):
+
+        c = Competition.objects.get(id=id_competition)
+        c.name = request.POST['name']
+        c.description = request.POST['description']
+        c.save()
+
+        send_mail('Competition changed', 'Your competion' + id_competition + 'has been changeg .', 'smarttoolssaas@example.com',['jhonatan.alarcon.ariza@gmail.com '], fail_silently=False)
+
+        return HttpResponseRedirect("/competitions")
 
 
 
