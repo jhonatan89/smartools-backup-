@@ -12,16 +12,16 @@ __author__ = 'jhonatan'
 @kronos.register('* * * * *')
 def convert_videos():
     list_video = Video.objects.filter(state='WFC')
-    print len(list_video)
     if len(list_video) > 0:
         try:
-            for video_wfc in list_video:
-                video_con = video_wfc.originalVideoPath.name + '.conv.mp4'
-                Popen(['ffmpeg', '-i', video_wfc.originalVideoPath.name, video_con], cwd=MEDIA_ROOT).wait()
-                video_wfc.state = 'CON'
-                video_wfc.save()
+            for video in list_video:
+                video_conv = video.originalVideoPath.name + '.conv.mp4'
+                Popen(['ffmpeg', '-i', MEDIA_ROOT + '/' + video.originalVideoPath.name,
+                       MEDIA_ROOT + '/' + video_conv]).wait()
+                video.state = 'CON'
+                video.convertedVideoPath = video_conv
+                video.save()
         except:
-            print 'There is a error for this process'
-
+            print 'There is a error for this process, verify or install ffmpeg'
     else:
-        print 'There are Not videos for converted'
+        print 'There aren\'t videos for convert'

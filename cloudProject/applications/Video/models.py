@@ -14,7 +14,7 @@ class Video(models.Model):
     clientEmail = models.CharField(max_length=100)
     title = models.CharField(max_length=200)
     description = models.TextField(max_length=255)
-    uploadDate =models.DateTimeField(auto_now=False, auto_now_add=True)
+    uploadDate = models.DateTimeField(auto_now=False, auto_now_add=True)
     originalVideoPath = models.FileField(upload_to='video/%Y/%m/%d', blank=True)
     convertedVideoPath = models.CharField(max_length=255)
     state = models.CharField(max_length=3, choices=VIDEO_STATES, default='WFC')
