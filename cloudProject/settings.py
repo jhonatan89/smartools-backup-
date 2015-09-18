@@ -46,9 +46,6 @@ INSTALLED_APPS = (
     'kronos',
 )
 
-from django.core.urlresolvers import reverse_lazy
-FORBIDDEN_URL = reverse_lazy('error/forbidden')
-LOGIN_URL = reverse_lazy('Account')
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

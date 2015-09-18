@@ -17,8 +17,8 @@ from cloudProject.applications.Competition.models import Competition
 #Import Forms
 from cloudProject.applications.Competition.forms import CreateNewCompetition
 
-@login_required
-@user_passes_test(lambda u: u.groups.filter(Q(name='Company')), login_url='forbidden')
+
+@login_required(login_url='/account/forbbiden/')
 def index(request):
 
     try:
