@@ -21,8 +21,5 @@ class Video(models.Model):
     competition = models.ForeignKey(Competition, blank=True, null=True)
 
     def __unicode__(self):
-        title = "%s %s %s" % (self.competition,smart_unicode(self.title), self.clientfirtsName, self.clientLastName)
+        title = "%s %s %s" % (self.competition, smart_unicode(self.title), self.clientfirtsName, self.clientLastName)
         return title
-
-    def file_name(self):
-        return self.originalVideoPath.name
