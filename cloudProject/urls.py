@@ -10,5 +10,4 @@ urlpatterns = [
     url(r'^$', include('cloudProject.applications.Home.urls')),
     url(r'^account/', include('cloudProject.applications.Account.urls')),
     url(r'^competitions/', include('cloudProject.applications.Competition.urls')),
-    url(r'^videos/', include('cloudProject.applications.Video.urls')),
 ]
