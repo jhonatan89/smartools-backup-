@@ -2,69 +2,72 @@
 {% load staticfiles %}
 
 {% block content %}
-        <link rel="stylesheet" href="{% static 'css/content.css' %}">
+<link rel="stylesheet" href="{% static 'css/content.css' %}">
 
-    <div class="GralCont">
-            <div class="GCIn">
-
-
-                    <!-- Contenido -->
-                    <div class="Contenido">
-
-                        <div class="MarkerSecc">Your active competitions</div>
-                        <div class="SpV10"></div>
+<div class="GralCont">
+    <div class="GCIn">
 
 
-                        <div class="HorznX100">
-                            {% if competitions|length < 1 %}
-                            <div align="center">
-                                <button type="button" data-toggle="modal" data-target="#myModals" class="btn btn-default" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-plus" aria-hidden="true">  Add</span>
+        <!-- Contenido -->
+        <div class="Contenido">
+
+            <div class="MarkerSecc">Your active competitions</div>
+            <div class="SpV10"></div>
+
+
+            <div class="HorznX100">
+                {% if competitions|length < 1 %}
+                <div align="center">
+                    <button type="button" data-toggle="modal" data-target="#myModals" class="btn btn-default"
+                            aria-label="Left Align">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true">  Add</span>
+                    </button>
+                </div>
+                {% else %}
+                <a href="#" data-toggle="modal" data-target="#myModals">Create new competition</a>
+                ...
+                {% endif %}
+                {% for competition in competitions %}
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        {{ competition.name|upper }}
+                    </div>
+                    <div class="panel-footer">
+                        <div class="SpV01"></div>
+                        <div class="HorznX20">
+                            <img src="{% static competition.image %}" class="img-rounded" width="150" height="80">
+                        </div>
+
+                        <div class="HorznX60">
+                            <strong>Description:</strong> {{ competition.description }}</br>
+                            <strong>Opening Time:</strong> {{ competition.startDate }}</br>
+                            <strong>Url:</strong> <a href="{{ competition.get_competition_url }}">{{
+                            competition.get_competition_url }}</a><br>
+                        </div>
+                        <div class="HorznX10">
+                            <a href="#" data-toggle="modal" data-target="#editcompetition{{forloop.counter}}"
+                               class="btn btn-info" role="button">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true">  Edit</span>
+                            </a>
+                        </div>
+                        <div class="HorznX10">
+                            <form name="submitForm" method="POST" action="{{competition.get_finish_competition_url}}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-stop" aria-hidden="true">  Finish</span>
                                 </button>
-                            </div>
-                            {% else %}
-                            <a href="#" data-toggle="modal" data-target="#myModals">Create new competition</a>
-   ...
-                            {% endif %}
-                            {% for competition in competitions %}
-                            <div class="panel panel-default">
-                              <div class="panel-body">
-                                {{ competition.name|upper }}
-                              </div>
-                              <div class="panel-footer">
-                                  <div class="SpV01"></div>
-                                      <div class="HorznX20">
-                                        <img src="{% static competition.image %}" class="img-rounded"  width="150" height="80">
-                                      </div>
 
-                                      <div class="HorznX60">
-                                        <strong>Description:</strong> {{ competition.description }}</br>
-                                        <strong>Opening Time:</strong> {{ competition.startDate }}</br>
-                                        <strong>Url:</strong> <a href="{{ competition.get_competition_url }}">{{ competition.get_competition_url }}</a><br>
-                                      </div>
-                                      <div class="HorznX10">
-                                          <a href="#" data-toggle="modal" data-target="#editcompetition{{forloop.counter}}" class="btn btn-info" role="button">
-                                             <span class="glyphicon glyphicon-edit" aria-hidden="true">  Edit</span>
-                                          </a>
-                                      </div>
-                                      <div class="HorznX10">
-                                          <form name="submitForm" method="POST" action="{{competition.get_finish_competition_url}}">
-                                              {% csrf_token %}
-                                            <button type="submit" class="btn btn-danger" aria-label="Left Align">
-                                              <span class="glyphicon glyphicon-stop" aria-hidden="true">  Finish</span>
-                                            </button>
+                            </form>
+                        </div>
+                        <div class="SpV01"></div>
 
-                                          </form>
-                                      </div>
-                                  <div class="SpV01"></div>
+                    </div>
+                </div>
+                {% include "Competition/editcompetitionmodal.html" %}
 
-                              </div>
-                            </div>
-                            {% include "Competition/editcompetitionmodal.html" %}
-
-                            {% endfor %}
-                            <div align="center">
-                            <div class="pagination">
+                {% endfor %}
+                <div align="center">
+                    <div class="pagination">
                                 <span class="step-links">
                                     {% if competitions.has_previous %}
                                         <a href="?page={{ contacts.previous_page_number }}">previous</a>
@@ -78,13 +81,14 @@
                                         <a href="?page={{ competitions.next_page_number }}">next</a>
                                     {% endif %}
                                 </span>
-                            </div></div>
-
-
-                        </div>
                     </div>
+                </div>
+
+
             </div>
+        </div>
     </div>
+</div>
 
 {% include "Competition/newcompetitionmodal.html" %}
 

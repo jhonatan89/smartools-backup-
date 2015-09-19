@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 from django.utils.encoding import smart_unicode
 
+
 class Competition(models.Model):
     name = models.CharField(max_length=200)
     image = models.ImageField(upload_to='ImageCompetitions/%Y/%m/%d')
@@ -11,7 +12,7 @@ class Competition(models.Model):
     description = models.CharField(max_length=255)
     url = models.CharField(max_length=255)
     active = models.BooleanField()
-    #company = models.ForeignKey(Company, null=True)
+    # company = models.ForeignKey(Company, null=True)
     company = models.ForeignKey(User)
 
     def __unicode__(self):
@@ -19,7 +20,7 @@ class Competition(models.Model):
         return title
 
     def get_competition_url(self):
-        #return "http://" + platform.node() + ":8000" + "/competitions/%s/" % (self.id)
+        # return "http://" + platform.node() + ":8000" + "/competitions/%s/" % (self.id)
         return "http://127.0.0.1:8000" + "/competitions/%s/" % (self.id)
 
     def get_finish_competition_url(self):
