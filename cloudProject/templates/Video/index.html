@@ -4,7 +4,6 @@
 {% block content %}
 
 <div class="col-md-6">
-<div class="panel panel-primary">
     <div id="upload">
         <form role="form" class="col-lg-12"  enctype="multipart/form-data" method="post" action="{% url 'upload_video' %}">
             <legend>Upload Video</legend>
@@ -16,39 +15,11 @@
         </form>
     </div>
 </div>
-</div>
 <div class="col-md-6">
     <h2>Company <span class="label label-default">Competition X</span></h2>
     <br>
     <img src='{% static "images/guitar.jpg" %}' class="img-responsive img-circle" alt="Competitions Image">
 
-</div>
-
-
-<!-- Modal Confirmation IN HTML -->
-<div id="confirm" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Confirm</h4>
-            </div>
-            <div class="modal-body">
-                <h3>Your video is in the competition!!!</h3>
-
-                <p>In few minutes we send email you with the confirmation</p>
-                <br>
-
-                <p>@SmartTools</p>
-            </div>
-            <div class="modal-footer">
-                <div class="form-group">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 </div>
 
 {% endblock%}

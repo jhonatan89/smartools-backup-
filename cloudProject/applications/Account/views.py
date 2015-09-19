@@ -1,12 +1,10 @@
+import json
+
 from django.shortcuts import  HttpResponseRedirect,HttpResponse,render_to_response
 from django.contrib import auth
 from django.contrib.auth.models import User, Group
 from django.views.generic import TemplateView
-from django.views.decorators.csrf import csrf_exempt
 
-
-
-import json
 
 def signout(request):
 
@@ -31,15 +29,9 @@ class signin(TemplateView):
         if user is not None and user.is_active:
             # Correct password, and the user is marked "active"
             auth.login(request, user)
-            # Redirect to a success page.
-            diccionario['msg'] = 'OK'
-
-            return HttpResponse(json.dumps(diccionario),content_type='application/json')
+            return HttpResponse(status=200)
         else:
-
-            diccionario['msg'] = 'error'
-            # Show an error page
-            return HttpResponse(json.dumps(diccionario),content_type='application/json')
+            return HttpResponse(status=401)
 
 class signup(TemplateView):
 

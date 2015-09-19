@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, render_to_response
+from django.shortcuts import render, render_to_response
 
 from cloudProject.applications.Video.forms import UploadVideo
 from cloudProject.applications.Video.models import Video
@@ -14,7 +14,7 @@ def upload_video(request):
                               clientLastName=request.POST['clientlastName'], description=request.POST['description'],
                               clientEmail=request.POST['clientEmail'])
             new_video.save(form)
-            return redirect('confirmation_video')
+            return render(request, 'Video/confirmation.html')
     else:
         form = UploadVideo()
     return render(request, 'Video/index.html', {'form': form})
