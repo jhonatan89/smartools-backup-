@@ -29,9 +29,10 @@ def confirmation_video(request):
 
 
 def get_video(request, id_competition):
-    if request.method == 'GET':
-        competition = Competition.objects.get(id=id_competition)
-        list_video = Video.objects.filter(state='CON', competition=id_competition)
-        return render(request, 'Competition/list_videos.html', {'videos': list_video, 'competition': competition})
+    competition = Competition.objects.get(id=id_competition)
+    list_video = Video.objects.filter(state='CON', competition=id_competition)
+    if request.user.is_authenticated():
+        return render(request, 'Competition/list_admin_videos.html', {'videos': list_video, 'competition': competition})
     else:
-        return render(request, 'Competition/list_videos.html')
+        return render(request, 'Competition/list_public_videos.html',
+                      {'videos': list_video, 'competition': competition})
