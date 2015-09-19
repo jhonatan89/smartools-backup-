@@ -10,13 +10,15 @@
         <h3 class="panel-title">Competition : {{competition.name}}</h3>
     </div>
     <div class="panel-body">
-        <p align="center"><a class="btn btn-success btn-lg" href="/videos" role="button"><span
+        <p align="center"><a class="btn btn-success btn-lg" href="/{{competition.get_upload_video_url}}"
+                             role="button"><span
                 class="glyphicon glyphicon-plus-sign"></span> Add video</a></p>
         {% for video in videos %}
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title">{{video.title}}</h4>
+                    <h4 class="panel-title">{{video.title}} - <i>{{video.clientfirtsName}} {{video.clientLastName}}</i>
+                    </h4>
                 </div>
                 <div class="panel-body">
                     <video id="example_video_1" class="video-js vjs-default-skin"

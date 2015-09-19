@@ -27,3 +27,6 @@ class Competition(models.Model):
 
     def get_edit_competition_url(self):
         return "/competitions/%s/edit/" % (self.id)
+
+    def get_upload_video_url(self):
+        return "competitions/%s/upload/" % (self.id)
