@@ -2,6 +2,7 @@ from django.shortcuts import render, render_to_response
 
 from cloudProject.applications.Video.forms import UploadVideo
 from cloudProject.applications.Video.models import Video
+from cloudProject.applications.Competition.models import Competition
 
 
 # Create your views here.
@@ -22,3 +23,12 @@ def upload_video(request):
 
 def confirmation_video(request):
     return render_to_response('Video/confirmation.html')
+
+
+def get_video(request, id_competition):
+    if request.method == 'GET':
+        competition = Competition.objects.get(id=id_competition)
+        list_video = Video.objects.filter(state='CON', competition=id_competition)
+        return render(request, 'Competition/list_videos.html', {'videos': list_video, 'competition': competition})
+    else:
+        return render(request, 'Competition/list_videos.html')
