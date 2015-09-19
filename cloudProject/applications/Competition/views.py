@@ -1,14 +1,15 @@
-from django.shortcuts import render_to_response, RequestContext,redirect,HttpResponseRedirect
+from datetime import datetime
+
+from django.shortcuts import render_to_response, RequestContext, HttpResponseRedirect
 from django.db.models import Q
 from django.utils.timezone import utc
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 from django.core.mail import send_mail
 from django.views.generic import TemplateView
 
-from datetime import datetime
 
 #Impor auth
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 #Import Models
@@ -50,11 +51,14 @@ def index(request):
         print('post')
         form = CreateNewCompetition(request.POST, request.FILES)
         if form.is_valid():
+            print (request.POST.get('startDate'))
 
             print('valid')
             new_competition = Competition(name=request.POST['name'],
                                           image=request.FILES['image'],
-                                          description=request.POST['description'],
+                                          description=request.POST.get('description'),
+                                          startDate=request.POST.get('startDate'),
+                                          endDate=request.POST.get('endDate'),
                                           url='url',
                                           active=True,
                                           company=company)
@@ -62,7 +66,11 @@ def index(request):
             new_competition.url="/competitions/" + str(new_competition.id)
             new_competition.save()
 
+            ctx['resp'] = 'OK'
+
             return HttpResponseRedirect("/competitions")
+        else:
+            ctx['resp'] = 'BAD'
 
     return render_to_response('Competition/index.html', ctx, context_instance=RequestContext(request))
 
