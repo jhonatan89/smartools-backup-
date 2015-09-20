@@ -1,5 +1,4 @@
 import django
-from .validators import validate_file_extension
 from cloudProject.settings import UPLOAD_VIDEO_TYPE
 
 

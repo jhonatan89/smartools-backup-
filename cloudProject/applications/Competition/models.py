@@ -21,7 +21,7 @@ class Competition(models.Model):
 
     def get_competition_url(self):
         # return "http://" + platform.node() + ":8000" + "/competitions/%s/" % (self.id)
-        return "http://127.0.0.1:8000" + "/competitions/%s/" % (self.id)
+        return "http://127.0.0.1:8000" + "/competitions/%s/show/" % (self.id)
 
     def get_finish_competition_url(self):
         return "/competitions/%s/finish/" % (self.id)

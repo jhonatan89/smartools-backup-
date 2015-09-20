@@ -52,7 +52,6 @@ def index(request):
         form = CreateNewCompetition(request.POST, request.FILES)
         if form.is_valid():
             print (request.POST.get('startDate'))
-
             print('valid')
             new_competition = Competition(name=request.POST['name'],
                                           image=request.FILES['image'],
@@ -71,7 +70,7 @@ def index(request):
             return HttpResponseRedirect("/competitions")
         else:
             ctx['resp'] = 'BAD'
-
+            print form.is_valid
     return render_to_response('Competition/index.html', ctx, context_instance=RequestContext(request))
 
 class finish(TemplateView):
@@ -94,7 +93,7 @@ class edit(TemplateView):
         c.description = request.POST['description']
         c.save()
 
-        send_mail('Competition changed', 'Your competion' + id_competition + 'has been changeg .', 'smarttoolssaas@example.com',['jhonatan.alarcon.ariza@gmail.com '], fail_silently=False)
+        send_mail('Competition changed', 'Your competition' + id_competition + 'has been changeg .', 'smarttoolssaas@example.com',[request.user.email], fail_silently=False)
 
         return HttpResponseRedirect("/competitions")
 

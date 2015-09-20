@@ -28,7 +28,7 @@
 
                     <div class="col-md-6">
                         ORIGINAL VIDEO
-                        <video id="example_video_1" class="video-js vjs-default-skin"
+                        <video id="video_original" class="video-js vjs-default-skin"
                                controls preload="auto" width="400" height="264"
                                data-setup='{"example_option":true}'>
                             <source src="{% static video.originalVideoPath %}"/>
@@ -41,7 +41,7 @@
 
                     <div class="col-md-6">
                         CONVERTED VIDEO
-                        <video id="example_video_1" class="video-js vjs-default-skin"
+                        <video id="video_converted" class="video-js vjs-default-skin"
                                controls preload="auto" width="400" height="264"
                                data-setup='{"example_option":true}'>
                             <source src="{% static video.convertedVideoPath %}"/>
@@ -58,6 +58,21 @@
 
         {% endfor %}
     </div>
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if videos.has_previous %}
+            <a href="?page={{ videos.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ videos.number }} of {{ videos.paginator.num_pages }}.
+        </span>
+
+        {% if contacts.has_next %}
+            <a href="?page={{ videos.next_page_number }}">next</a>
+        {% endif %}
+    </span>
 </div>
 
 {% endblock %}

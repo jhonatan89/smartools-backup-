@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response
-
+from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 from cloudProject.applications.Video.forms import UploadVideo
 from cloudProject.applications.Video.models import Video
 from cloudProject.applications.Competition.models import Competition
@@ -29,10 +29,19 @@ def confirmation_video(request):
 
 
 def get_video(request, id_competition):
+    videos_per_page = 50
     competition = Competition.objects.get(id=id_competition)
     list_video = Video.objects.filter(state='CON', competition=id_competition)
+    paginator = Paginator(list_video, videos_per_page)
+    page = request.GET.get('page')
+    try:
+        videos = paginator.page(page)
+    except PageNotAnInteger:
+        videos = paginator.page(1)
+    except EmptyPage:
+        videos = paginator.page(paginator.num_pages)
     if request.user.is_authenticated():
-        return render(request, 'Competition/list_admin_videos.html', {'videos': list_video, 'competition': competition})
+        return render(request, 'Competition/list_admin_videos.html', {'videos': videos, 'competition': competition})
     else:
         return render(request, 'Competition/list_public_videos.html',
-                      {'videos': list_video, 'competition': competition})
+                      {'videos': videos, 'competition': competition})

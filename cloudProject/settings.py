@@ -117,7 +117,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-UPLOAD_VIDEO_TYPE = ['audio/ogg']
+UPLOAD_VIDEO_TYPE = ['audio/ogg', 'video/x-msvideo', 'video/x-flv','video/mp4', 'video/x-ms-wmv','video/3gpp']
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = (

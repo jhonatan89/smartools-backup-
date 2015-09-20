@@ -25,7 +25,7 @@
                 </div>
                 {% else %}
                 <a href="#" data-toggle="modal" data-target="#myModals">Create new competition</a>
-                ...
+
                 {% endif %}
                 {% for competition in competitions %}
                 <div class="panel panel-default">
@@ -42,8 +42,7 @@
                             <strong>Description:</strong> {{ competition.description }}</br>
                             <strong>Opening Time:</strong> {{ competition.startDate }}</br>
                             <strong>Closing Time:</strong> {{ competition.endDate }}</br>
-                            <strong>Url:</strong> <a href="{{ competition.get_competition_url }}">{{competition.get_competition_url
-                            }}</a><br>
+                            <strong>Url:</strong> <a href="{{ competition.get_competition_url }}">{{competition.get_competition_url}}</a><br>
                         </div>
                         <div class="HorznX10">
                             <a href="#" data-toggle="modal" data-target="#editcompetition{{forloop.counter}}"
