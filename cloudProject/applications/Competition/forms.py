@@ -9,8 +9,6 @@ class CreateNewCompetition(django.forms.Form):
                                                                           "pickTime": True}))
     endDate = django.forms.DateField(label='Closing time',
                                      widget=DateTimePicker(options={"format": "YYYY-MM-DD HH:mm",
-                                                                    "pickSeconds": False}))
+                                                                    "pickTime": True}))
     image = django.forms.ImageField(label='Choose Picture')
-    description = django.forms.CharField(label='Add description', max_length=500, widget=django.forms.Textarea)
-
-    
+    description = django.forms.CharField(label='Add description', max_length=200, widget=django.forms.Textarea)

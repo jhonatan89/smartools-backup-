@@ -3,7 +3,7 @@
 <div id="myModals" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form role="form" class="col-lg-12" enctype="multipart/form-data" method="post" action="">
+            <form role="form" onsubmit="return newform(this)" id="new" class="col-lg-12" enctype="multipart/form-data" method="post" action="">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h4 class="modal-title">Create new competition</h4>
@@ -18,10 +18,30 @@
                 <div class="modal-footer">
                     <div class="form-group">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <input id="submitnewcompetition" type="submit" class="btn btn-info" value="Save">
+                        <input id="submitnewcompetition"  type="submit" class="btn btn-info" value="Save">
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<script>
+function newform(f) {
+if (f.name.value   == '') { alert ('Tittle field is empty');
+f.name.focus(); return false; }
+
+if (f.startDate.value  == '') { alert ('Opening date file is empty');
+f.startDate.focus(); return false; }
+
+if (f.endDate.value  == '') { alert ('Closing date file is empty');
+f.endDate.focus(); return false; }
+
+if (f.image.value  == '') { alert ('Image file is empty');
+f.image.focus(); return false; }
+
+if (f.description.value  == '') { alert ('Description file is empty');
+f.description.focus(); return false; }
+
+return true; }
+
+</script>

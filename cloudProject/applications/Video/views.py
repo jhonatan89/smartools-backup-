@@ -31,7 +31,12 @@ def confirmation_video(request):
 def get_video(request, id_competition):
     videos_per_page = 50
     competition = Competition.objects.get(id=id_competition)
-    list_video = Video.objects.filter(state='CON', competition=id_competition)
+
+    if request.user.is_authenticated():
+        list_video = Video.objects.filter(competition=id_competition)
+    else:
+        list_video = Video.objects.filter(state='CON', competition=id_competition)
+
     paginator = Paginator(list_video, videos_per_page)
     page = request.GET.get('page')
     try:
