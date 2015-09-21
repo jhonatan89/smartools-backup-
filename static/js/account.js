@@ -30,6 +30,22 @@ $(document).ready(function () {
 
 
     $("#submitsignup").click(function(){
+
+        if ( $("#passwordSU").val() !== '') {
+            alert ('Password field is empty');
+            return false;
+        }
+
+        if ( $("#confirmpasswordSU").val() !== '') {
+            alert ('Confirm password field is empty');
+            return false;
+        }
+
+        if ( $("#passwordSU").val() !== $("#confirmpasswordSU").val()) {
+            alert ('Password fields have not the same value');
+            return false;
+        }
+
         var u = $("#usernameSU").val();
         var p = $("#passwordSU").val();
         var cn = $("#companynameSU").val();

@@ -32,7 +32,7 @@ def index(request):
 
     competitions_list = Competition.objects.filter(Q(company=company) & Q(active=True))
 
-    paginator = Paginator(competitions_list, 3)
+    paginator = Paginator(competitions_list, 50)
 
     page = request.GET.get('page')
 
@@ -48,29 +48,33 @@ def index(request):
     ctx= {'competitions':competitions,'form': form}
 
     if request.method == 'POST':
-        print('post')
+        print request.POST['name']
+        print request.FILES['image']
+        print request.POST['description']
+        print request.POST.get('startDate')
+        print request.POST.get('endDate')
         form = CreateNewCompetition(request.POST, request.FILES)
-        if form.is_valid():
-            print (request.POST.get('startDate'))
-            print('valid')
-            new_competition = Competition(name=request.POST['name'],
-                                          image=request.FILES['image'],
-                                          description=request.POST.get('description'),
-                                          startDate=request.POST.get('startDate'),
-                                          endDate=request.POST.get('endDate'),
-                                          url='url',
-                                          active=True,
-                                          company=company)
-            new_competition.save(form)
-            new_competition.url="/competitions/" + str(new_competition.id)
-            new_competition.save()
+        #if form.is_valid():
+        print (request.POST.get('startDate'))
+        print('valid')
+        new_competition = Competition(name=request.POST['name'],
+                                      image=request.FILES['image'],
+                                      description=request.POST['description'],
+                                      startDate=request.POST.get('startDate'),
+                                      endDate=request.POST.get('endDate'),
+                                      url='url',
+                                      active=True,
+                                      company=company)
+        new_competition.save(form)
+        new_competition.url="/competitions/" + str(new_competition.id)
+        new_competition.save()
 
-            ctx['resp'] = 'OK'
+        ctx['resp'] = 'OK'
 
-            return HttpResponseRedirect("/competitions")
-        else:
-            ctx['resp'] = 'BAD'
-            print form.is_valid
+        return HttpResponseRedirect("/competitions")
+        #else:
+         #   ctx['resp'] = 'BAD'
+          #  print form.is_valid
     return render_to_response('Competition/index.html', ctx, context_instance=RequestContext(request))
 
 class finish(TemplateView):
@@ -89,8 +93,8 @@ class edit(TemplateView):
     def post(self,request,id_competition):
 
         c = Competition.objects.get(id=id_competition)
-        c.name = request.POST['name']
-        c.description = request.POST['description']
+        c.name = request.POST['nameedit']
+        c.description = request.POST['descriptionedit']
         c.save()
 
         send_mail('Competition changed', 'Your competition' + id_competition + 'has been changeg .', 'smarttoolssaas@example.com',[request.user.email], fail_silently=False)
