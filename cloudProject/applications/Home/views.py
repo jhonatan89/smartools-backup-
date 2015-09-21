@@ -7,3 +7,6 @@ def index(request):
 
 def forbidden(request):
     return render_to_response('Home/index.html', context=RequestContext(request))
+
+def about_us(request):
+    return render_to_response('Home/about_us.html', context=RequestContext(request))

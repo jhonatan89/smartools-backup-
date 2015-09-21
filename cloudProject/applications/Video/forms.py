@@ -13,7 +13,7 @@ class UploadVideo(django.forms.Form):
     def clean(self):
         cleaned_data = self.cleaned_data
         file = cleaned_data.get("originalVideoPath")
-        file_exts = ('.ogg', '.avi',)
+        file_exts = ('.ogg', '.3gpp', '.mp4')
 
         if file is None:
             raise django.forms.ValidationError('Please select file first ')
