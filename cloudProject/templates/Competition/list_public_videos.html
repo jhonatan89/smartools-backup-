@@ -7,12 +7,13 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="panel-title">Competition : {{competition.name}}</h3>
+            <h3 class="panel-title">Competition : <strong>{{competition.name}}</strong></h3>
     </div>
     <div class="panel-body">
-        <p align="center"><a class="btn btn-success btn-lg" href="/{{competition.get_upload_video_url}}"
+        <p align="center"><a class="btn btn-success btn-lg" href="{{competition.get_upload_video_url}}"
                              role="button"><span
                 class="glyphicon glyphicon-plus-sign"></span> Add video</a></p>
+
         {% for video in videos %}
         <div class="col-md-6">
             <div class="panel panel-default">

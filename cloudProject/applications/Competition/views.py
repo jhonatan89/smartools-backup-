@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from django.shortcuts import render_to_response, RequestContext, HttpResponseRedirect
+from django.shortcuts import render_to_response, RequestContext, HttpResponseRedirect, render
 from django.db.models import Q
 from django.utils.timezone import utc
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
@@ -101,6 +101,8 @@ class edit(TemplateView):
 
         return HttpResponseRedirect("/competitions")
 
-
+def show_all_competitions(request):
+    list_competitions = Competition.objects.filter(active=True)
+    return render(request, 'Competition/active_competitions.html', {'competitions': list_competitions})
 
 
