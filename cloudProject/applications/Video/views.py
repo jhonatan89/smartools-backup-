@@ -33,9 +33,9 @@ def get_video(request, id_competition):
     competition = Competition.objects.get(id=id_competition)
 
     if request.user.is_authenticated():
-        list_video = Video.objects.filter(competition=id_competition)
+        list_video = Video.objects.filter(competition=id_competition).order_by('-uploadDate')
     else:
-        list_video = Video.objects.filter(state='CON', competition=id_competition)
+        list_video = Video.objects.filter(state='CON', competition=id_competition).order_by('-uploadDate')
 
     paginator = Paginator(list_video, videos_per_page)
     page = request.GET.get('page')
