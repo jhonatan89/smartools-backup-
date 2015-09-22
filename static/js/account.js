@@ -31,12 +31,12 @@ $(document).ready(function () {
 
     $("#submitsignup").click(function(){
 
-        if ( $("#passwordSU").val() !== '') {
+        if ( $("#passwordSU").val() === '') {
             alert ('Password field is empty');
             return false;
         }
 
-        if ( $("#confirmpasswordSU").val() !== '') {
+        if ( $("#confirmpasswordSU").val() === '') {
             alert ('Confirm password field is empty');
             return false;
         }
