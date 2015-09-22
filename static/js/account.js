@@ -16,7 +16,7 @@ $(document).ready(function () {
             async: true,
             cache: false,
 
-            url: "account/signin/",
+            url: "/account/signin/",
             data: { csrfmiddlewaretoken: csrftoken, username: u, password: p  },
             success: function(msg){
                 $(location).attr('href', '/competitions');
@@ -60,7 +60,7 @@ $(document).ready(function () {
             async: true,
             cache: false,
 
-            url: "account/signup/",
+            url: "/account/signup/",
             data: { csrfmiddlewaretoken: csrftoken, username: u, password: p, email:e, companyname:cn },
             success: function(msg){
                 console.log(msg);

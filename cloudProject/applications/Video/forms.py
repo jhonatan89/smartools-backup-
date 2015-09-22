@@ -13,10 +13,10 @@ class UploadVideo(django.forms.Form):
     def clean(self):
         cleaned_data = self.cleaned_data
         file = cleaned_data.get("originalVideoPath")
-        file_exts = ('.ogg', '.3gpp', '.mp4')
+        file_exts = ('.ogg', '.3gpp', '.mp4', '.avi', '.flv')
 
         if file is None:
-            raise django.forms.ValidationError('Please select file first ')
+            raise django.forms.ValidationError('Please select video file first!!')
 
         if not file.content_type in UPLOAD_VIDEO_TYPE:  # UPLOAD_VIDEO_TYPE contains mime types of required file
             print UPLOAD_VIDEO_TYPE
