@@ -9,7 +9,7 @@ from cloudProject.settings import MEDIA_ROOT
 __author__ = 'jhonatan'
 
 
-@kronos.register('* * * * *')
+@kronos.register('*/5 * * * *')
 def convert_videos():
     list_video = Video.objects.filter(state='WFC')
     if len(list_video) > 0:
