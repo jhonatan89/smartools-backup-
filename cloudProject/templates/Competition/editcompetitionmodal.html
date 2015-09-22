@@ -2,7 +2,7 @@
 <div id="editcompetition{{forloop.counter}}" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <!--<form role="form" onsubmit="return editform(this)" class="col-lg-12"  enctype="multipart/form-data" method="post" action="{{ competition.get_edit_competition_url }}">-->
+            <form role="form" onsubmit="return editform(this)"   enctype="multipart/form-data" method="post" action="{{ competition.get_edit_competition_url }}">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h4 class="modal-title">Edit competition</h4>
@@ -29,7 +29,7 @@
                         <input id="editcompetition" type="submit" class="btn btn-info" value="Save">
                     </div>
                 </div>
-            <!--</form>-->
+            </form>
         </div>
     </div>
 </div>
