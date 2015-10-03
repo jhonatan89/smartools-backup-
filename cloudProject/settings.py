@@ -15,6 +15,17 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+#AMAZON AWS
+AWS_STORAGE_BUCKET_NAME = 'AWS_BUCKET'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET')
+
+    # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
+    # it simple - just use this domain plus the path. (If this isn't set, things get complicated).
+    # This controls how the `static` template tag from `staticfiles` gets expanded, if you're using it.
+    # We also use it in the next setting.
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -45,6 +56,7 @@ INSTALLED_APPS = (
     'bootstrapform',
     'kronos',
     'bootstrap3_datetime',
+    'storages'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -113,8 +125,12 @@ USE_L10N = True
 USE_TZ = True
 
 #ruta donde guardaremos los archivos de media
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+MEDIAFILES_LOCATION = 'media'
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+DEFAULT_FILE_STORAGE = 'cloudProject.storage.custom_storages.MediaStorage'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
@@ -123,11 +139,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'media'),
 )
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'smarttoolssaas@gmail.com'
-EMAIL_HOST_PASSWORD = 'smart12345'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django_ses.SESBackend'
