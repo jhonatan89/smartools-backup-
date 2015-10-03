@@ -16,7 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 #AMAZON AWS
-AWS_STORAGE_BUCKET_NAME = 'AWS_BUCKET'
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_BUCKET')
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET')
 
