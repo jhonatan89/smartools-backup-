@@ -4,7 +4,6 @@ from django.shortcuts import render_to_response, RequestContext, HttpResponseRed
 from django.db.models import Q
 from django.utils.timezone import utc
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
-from django.core.mail import send_mail
 from django.views.generic import TemplateView
 
 
@@ -97,7 +96,7 @@ class edit(TemplateView):
         c.description = request.POST['descriptionedit']
         c.save()
 
-        send_mail('Competition changed', 'Your competition' + id_competition + 'has been changeg .', 'smarttoolssaas@example.com',[request.user.email], fail_silently=False)
+        # send_mail('Competition changed', 'Your competition' + id_competition + 'has been changeg .', 'smarttoolssaas@example.com',[request.user.email], fail_silently=False)
 
         return HttpResponseRedirect("/competitions")
 
