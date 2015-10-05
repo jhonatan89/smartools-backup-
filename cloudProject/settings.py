@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 #AMAZON AWS
@@ -103,11 +102,11 @@ WSGI_APPLICATION = 'cloudProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASS'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT')
+        'NAME': os.getenv('DBASE_NAME'),
+        'USER': os.getenv('DBASE_USER'),
+        'PASSWORD': os.getenv('DBASE_PASS'),
+        'HOST': os.getenv('DBASE_HOST'),
+        'PORT': os.getenv('DBASE_PORT')
     }
 }
 
