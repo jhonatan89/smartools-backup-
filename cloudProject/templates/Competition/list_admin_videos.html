@@ -4,6 +4,7 @@
 {% block content %}
 <link href="//vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">
 <script src="//vjs.zencdn.net/4.12/video.js"></script>
+<script src="http://content.jwplatform.com/libraries/RbzKMzDD.js"></script>
 
 <div class="panel panel-primary">
     <div class="panel-heading">
@@ -28,28 +29,28 @@
 
                     <div class="col-md-6">
                         ORIGINAL VIDEO
-                        <video id="video_original" class="video-js vjs-default-skin"
-                               controls preload="auto" width="400" height="264"
-                               data-setup='{"example_option":true}'>
-                            <source src="{% static video.originalVideoPath %}"/>
-                            <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to
-                                a
-                                web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports
-                                    HTML5 video</a></p>
-                        </video>
+
+                        <div id="originalvideo{{forloop.counter}}">
+                            <script type="text/javascript">
+                                jwplayer('originalvideo{{forloop.counter}}').setup({
+                                    file:"{% static video.originalVideoPath %}"
+                                });
+                            </script>
+
+                        </div>
+
                     </div>
 
                     <div class="col-md-6">
                         CONVERTED VIDEO
-                        <video id="video_converted" class="video-js vjs-default-skin"
-                               controls preload="auto" width="400" height="264"
-                               data-setup='{"example_option":true}'>
-                            <source src="{% static video.convertedVideoPath %}"/>
-                            <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to
-                                a
-                                web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports
-                                    HTML5 video</a></p>
-                        </video>
+                        <div id="convertedvideo{{forloop.counter}}">
+                            <script type="text/javascript">
+                                jwplayer('convertedvideo{{forloop.counter}}').setup({
+                                    file:"{% static video.originalVideoPath %}"
+                                });
+                            </script>
+
+                        </div>
                     </div>
 
                 </div>
