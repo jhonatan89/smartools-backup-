@@ -22,14 +22,14 @@
                     </h4>
                 </div>
                 <div class="panel-body">
-                    <video id="example_video_1" class="video-js vjs-default-skin"
-                           controls preload="auto" width="400" height="264"
-                           data-setup='{"example_option":true}'>
-                        <source src="{% static video.convertedVideoPath %}" type='video/mp4'/>
-                        <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a
-                            web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports
-                                HTML5 video</a></p>
-                    </video>
+                    <div id="convertedvideo{{forloop.counter}}">
+                            <script type="text/javascript">
+                                jwplayer('convertedvideo{{forloop.counter}}').setup({
+                                    file:"{{ MEDIA_URL }}{{video.convertedVideoPath}}"
+                                });
+                            </script>
+
+                    </div>
                 </div>
             </div>
         </div>
