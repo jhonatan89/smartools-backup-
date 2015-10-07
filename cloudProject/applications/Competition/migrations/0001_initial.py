@@ -13,13 +13,17 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Company',
+            name='Competition',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=200)),
-                ('nit', models.BigIntegerField()),
+                ('image', models.ImageField(upload_to=b'ImageCompetitions/%Y/%m/%d')),
+                ('startDate', models.DateTimeField(auto_now_add=True)),
+                ('endDate', models.DateTimeField(auto_now_add=True)),
                 ('description', models.CharField(max_length=255)),
-                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
+                ('url', models.CharField(max_length=255)),
+                ('active', models.BooleanField()),
+                ('company', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

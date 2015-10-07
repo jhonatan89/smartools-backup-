@@ -6,6 +6,7 @@ from cloudProject.applications.Competition.models import Competition
 class Video(models.Model):
     VIDEO_STATES = (
         ('CON', 'Converted'),
+        ('CIP', 'Conversion in process'),
         ('WFC', 'Waiting for conversion'),
     )
     clientfirtsName = models.CharField(max_length=200)
@@ -14,9 +15,9 @@ class Video(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(max_length=255)
     uploadDate = models.DateTimeField(auto_now=False, auto_now_add=True)
-    originalVideoPath = models.FileField(upload_to='video/%Y/%m/%d')
+    originalVideoPath = models.FileField(upload_to='video')
     convertedVideoPath = models.CharField(max_length=255)
-    state = models.CharField(max_length=3, choices=VIDEO_STATES, default='WFC')
+    state = models.CharField(max_length=4, choices=VIDEO_STATES, default='WFC')
     competition = models.ForeignKey(Competition, blank=True, null=True)
 
     def __unicode__(self):
