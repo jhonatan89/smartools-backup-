@@ -26,6 +26,8 @@ def convert_videos():
                     os.makedirs(url_tmp)
                 video_file.get_contents_to_filename(url_tmp + video_file.name)
                 video_conv = video_file.name + '.conv.mp4'
+		print url_tmp + video_file.name
+                print url_tmp + video_conv
                 Popen(['ffmpeg', '-i', url_tmp + video_file.name,
                        url_tmp + video_conv]).wait()
                 k = Key(bucket)
