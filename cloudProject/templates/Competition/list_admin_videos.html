@@ -14,6 +14,9 @@
 
         {% for video in videos %}
         <div class="col-md-12">
+               {% if videos|length < 1%}
+                    Nothing to Show
+                    {% endif %}
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">{{video.title}} - <i>{{video.clientfirtsName}} {{video.clientLastName}}</i>
@@ -26,7 +29,6 @@
                     <strong>Video status: </strong>{{ video.get_state_display }}<br>
                 </div>
                 <div class="panel-body">
-
                     <div class="col-md-6">
                         ORIGINAL VIDEO
 
@@ -42,15 +44,17 @@
                     </div>
 
                     <div class="col-md-6">
+                        {% if video.get_state_display == 'Converted' %}
                         CONVERTED VIDEO
                         <div id="convertedvideo{{forloop.counter}}">
                             <script type="text/javascript">
                                 jwplayer('convertedvideo{{forloop.counter}}').setup({
-                                    file:"{{ MEDIA_URL }}{{video.originalVideoPath}}"
+                                    file:"{{ MEDIA_URL }}{{video.convertedVideoPath}}"
                                 });
                             </script>
 
                         </div>
+                        {% endif %}
                     </div>
 
                 </div>
