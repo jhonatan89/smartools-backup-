@@ -25,19 +25,17 @@ def convert_videos():
                 if not os.path.exists(url_tmp):
                     os.makedirs(url_tmp)
                 video_file.get_contents_to_filename(url_tmp + video_file.name)
-                video_conv = video_file.name + '.conv.mp4'
-		print url_tmp + video_file.name
-                print url_tmp + video_conv
+                video_conv = video.originalVideoPath.name + '.conv.mp4'
                 Popen(['ffmpeg', '-i', url_tmp + video_file.name,
                        url_tmp + video_conv]).wait()
                 k = Key(bucket)
-                k.key = video_conv
+                k.key = 'media/' + video_conv
                 k.set_contents_from_filename(url_tmp + video_conv)
                 video.state = 'CON'
                 video.convertedVideoPath = video_conv
                 video.save()
                 message = '<h2>Hola ' + video.clientfirtsName + ' ' + video.clientLastName + ',</h2><br>' + '<h3>You already can watch your video in our website</h3>' + '<br>' + '<strong>Video:</strong> ' + video.title + '<br>' + '<strong>Video description:</strong> ' + video.description + '<br>' + 'Thanks' + '<br><br>' + 'Sm@rtTools 2015'
-                send_mail('You already is in the competition ', '', 'smarttoolssaas@example.com', [video.clientEmail],
+                send_mail('You already is in the competition ', '', 'smarttoolssaas@gmail.com', [video.clientEmail],
                           fail_silently=False, html_message=message)
         except ValueError:
             print 'There is a error in the convert process'
