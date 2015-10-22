@@ -154,3 +154,7 @@ STATICFILES_DIRS = (
 )
 
 EMAIL_BACKEND = 'django_ses.SESBackend'
+SERVER_EMAIL = 'smarttoolssaas@gmail.com'
+
+AWS_SES_REGION_NAME = 'us-west-2'
+AWS_SES_REGION_ENDPOINT = 'email.us-west-2.amazonaws.com'

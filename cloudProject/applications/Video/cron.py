@@ -22,15 +22,15 @@ def convert_videos():
                 video.state = 'CIP'
                 video.save()
                 video_file = bucket.get_key('media/' + str(video.originalVideoPath))
-                if not os.path.exists(url_tmp):
-                    os.makedirs(url_tmp)
+                if not os.path.exists(url_tmp + 'media/video'):
+                    os.makedirs(url_tmp + 'media/video')
                 video_file.get_contents_to_filename(url_tmp + video_file.name)
                 video_conv = video.originalVideoPath.name + '.conv.mp4'
                 Popen(['ffmpeg', '-i', url_tmp + video_file.name,
-                       url_tmp + video_conv]).wait()
+                       url_tmp + 'media/' + video_conv]).wait()
                 k = Key(bucket)
                 k.key = 'media/' + video_conv
-                k.set_contents_from_filename(url_tmp + video_conv)
+                k.set_contents_from_filename(url_tmp + 'media/' + video_conv)
                 video.state = 'CON'
                 video.convertedVideoPath = video_conv
                 video.save()
