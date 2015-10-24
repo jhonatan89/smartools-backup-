@@ -15,7 +15,7 @@ class Session():
             logged_users.append(id)
             Connection_cache().set_cache('logged', logged_users)
 
-    def do_logout(self, user_id):
+    def do_logout(user_id):
         print "llego al logout"
         id = str(user_id)
         logged_users = Connection_cache().get_cache('logged')
@@ -24,7 +24,7 @@ class Session():
             Connection_cache().set_cache('logged', logged_users)
 
     @staticmethod
-    def verify_current_session(self, user_id):
+    def verify_current_session(user_id):
         print "llego al verify" + user_id
         id = str(user_id)
         logged_users = Connection_cache().get_cache('logged')
