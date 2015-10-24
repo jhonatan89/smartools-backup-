@@ -30,7 +30,7 @@ class signin(TemplateView):
 
         if company.validate_signin(username,password):
             print "antes" + username
-            Session().do_login(id)
+            Session().do_login(username)
             print "guardo"
             return HttpResponse(status=200)
         else:
