@@ -7,8 +7,8 @@ class Connection_cache():
 
     def set_cache(self,key_cache,value):
         print "llego cache"
-        print self.mc
         self.mc.set(key_cache,value)
 
     def get_cache(self,key_cache):
+        print "llego get"
         self.mc.get(key_cache)

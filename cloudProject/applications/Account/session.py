@@ -27,6 +27,7 @@ class Session():
         print "llego al verify"
         id = str(user_id)
         logged_users = Connection_cache().get_cache('logged')
+        print logged_users
         if logged_users:
             try:
                 logged_users.index(id)
@@ -36,4 +37,5 @@ class Session():
                 print "llego a exception"
                 return False
         else:
+            print "porqueee"
             return False
