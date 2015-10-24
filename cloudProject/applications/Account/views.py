@@ -29,6 +29,7 @@ class signin(TemplateView):
         password = request.POST.get('password')
 
         if company.validate_signin(username,password):
+            print "antes" + username
             Session().do_login(id)
             print "guardo"
             return HttpResponse(status=200)
