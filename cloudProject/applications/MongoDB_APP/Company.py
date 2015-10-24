@@ -43,6 +43,6 @@ class Company():
 
     def get_competitions(self, username):
 
-        competitions_ids = Connection().db.Company.find_one({ "username" : username, 'active' : 'true' })['competitions']
+        competitions_ids = Connection().db.Company.find({ "username" : username, 'active' : 'true' })['competitions']
         self.competitions = Competition().get_all_by_ids(competitions_ids)
 

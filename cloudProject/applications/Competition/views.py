@@ -17,16 +17,15 @@ from cloudProject.applications.Competition.forms import CreateNewCompetition
 
 
 def index(request):
-    user_name = request.COOKIES['userId']
-    print user_name
-    if Session.verify_current_session(user_name):
+
+    if Session.verify_current_session(request.COOKIES['userId']):
         print "entro a index"
-        company = user_name
+        company = request.COOKIES['userId']
 
         form = CreateNewCompetition()
 
-        competitions_list = Company().get_competitions(company)
-
+        # competitions_list = Company().get_competitions(company)
+        competitions_list = []
         paginator = Paginator(competitions_list, 50)
 
         page = request.GET.get('page')
