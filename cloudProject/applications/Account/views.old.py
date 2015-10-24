@@ -4,7 +4,6 @@ from django.shortcuts import  HttpResponseRedirect,HttpResponse,render_to_respon
 from django.contrib import auth
 from django.contrib.auth.models import User, Group
 from django.views.generic import TemplateView
-from cloudProject.applications.MongoDB_APP.Company import Company
 
 
 def signout(request):
@@ -39,17 +38,33 @@ class signup(TemplateView):
 
         diccionario={}
 
-        company = Company()
-
         username = request.POST.get('username')
 
-        if company.username_exist(username):
+        if User.objects.filter(username=username).exists():
+
             diccionario['msg'] = 'USEREXIST'
+
             return HttpResponse(json.dumps(diccionario),content_type='application/json')
         else:
+
             password = request.POST.get('password')
             email = request.POST.get('email')
-            companyname = request.POST.get('companyname')
-            company.create(username=username,companyName = companyname, email=email, password=password)
+            first_name = request.POST.get('companyname')
+
+            user = User.objects.create_user(username=username, email=email, password=password,first_name=first_name)
+
+            group = Group.objects.get(name='Company')
+
+            user.groups.add(group)
+            user.is_staff=True
+            user.save()
+            user = auth.authenticate(username=username, password=password)
+
+            auth.login(request, user)
+
             diccionario['msg'] = 'OK'
-        return HttpResponse(json.dumps(diccionario),content_type='application/json')
+
+            return HttpResponse(json.dumps(diccionario),content_type='application/json')
+
+
+
