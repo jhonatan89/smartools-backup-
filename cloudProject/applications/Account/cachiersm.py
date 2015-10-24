@@ -9,4 +9,5 @@ class Connection_cache():
         self.mc.set(key_cache,value)
 
     def get_cache(self,key_cache):
+        print key_cache + " userId"
         self.mc.get(key_cache)
