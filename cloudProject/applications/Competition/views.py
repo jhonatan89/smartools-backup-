@@ -19,7 +19,7 @@ from cloudProject.applications.Competition.forms import CreateNewCompetition
 def index(request):
     user_name = request.COOKIES['userId']
     print user_name
-    if Session().verify_current_session(user_name):
+    if Session.verify_current_session(user_name):
         print "entro a index"
         company = user_name
 

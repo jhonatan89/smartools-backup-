@@ -6,9 +6,7 @@ class Connection_cache():
     mc = MemcacheClient('smarttoolsv2.1giena.cfg.usw2.cache.amazonaws.com:11211')
 
     def set_cache(self,key_cache,value):
-        print "llego cache"
         self.mc.set(key_cache,value)
 
     def get_cache(self,key_cache):
-        print "llego get"
         self.mc.get(key_cache)
