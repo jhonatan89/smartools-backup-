@@ -2,6 +2,7 @@ import json
 
 from django.shortcuts import  HttpResponseRedirect,HttpResponse,render_to_response
 from django.contrib import auth
+from session import Session
 from django.contrib.auth.models import User, Group
 from django.views.generic import TemplateView
 from cloudProject.applications.MongoDB_APP.Company import Company
@@ -28,7 +29,8 @@ class signin(TemplateView):
         password = request.POST.get('password')
 
         if company.validate_signin(username,password):
-            #Session().login(id)
+            Session().do_login(id)
+            print "guardo"
             return HttpResponse(status=200)
         else:
             return HttpResponse(status=401)
