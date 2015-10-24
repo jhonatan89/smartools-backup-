@@ -20,6 +20,7 @@ from cloudProject.applications.Competition.forms import CreateNewCompetition
 
 def index(request):
     if Session().verify_current_session(request.COOKIES['userId']):
+        print "entro a index"
         # try:
         #     user_id = request.user.id
         #     company = User.objects.get(id=user_id)
@@ -74,7 +75,9 @@ def index(request):
             #   ctx['resp'] = 'BAD'
             #  print form.is_valid
         return render_to_response('Competition/index.html', ctx, context_instance=RequestContext(request))
-    return render_to_response("Error/forbidden.html")
+    else:
+        print "entro a forbidden"
+        return render_to_response("Error/forbidden.html")
 
 
 class finish(TemplateView):
