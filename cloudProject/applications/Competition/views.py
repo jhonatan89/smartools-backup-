@@ -64,29 +64,20 @@ def index(request):
         print "entro a forbidden"
         return render_to_response("Error/forbidden.html")
 
-
 class finish(TemplateView):
     def post(self, request, id_competition):
-        c = Competition.objects.get(id=id_competition)
-        c.endDate = datetime.utcnow().replace(tzinfo=utc)
-        c.active = False
-        c.save()
+        Competition().finish(id_competition)
 
         return HttpResponseRedirect("/competitions")
-
 
 class edit(TemplateView):
     def post(self, request, id_competition):
-        c = Competition.objects.get(id=id_competition)
-        c.name = request.POST['nameedit']
-        c.description = request.POST['descriptionedit']
-        c.save()
-
-        # send_mail('Competition changed', 'Your competition' + id_competition + 'has been changeg .', 'smarttoolssaas@example.com',[request.user.email], fail_silently=False)
+        Competition().update(id=id_competition,
+                                 name=request.POST['nameedit'],
+                                 description = request.POST['descriptionedit'] )
 
         return HttpResponseRedirect("/competitions")
 
-
 def show_all_competitions(request):
-    list_competitions = Competition.objects.filter(active=True)
+    list_competitions = Competition().get_all()
     return render(request, 'Competition/active_competitions.html', {'competitions': list_competitions})

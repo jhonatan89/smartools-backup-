@@ -11,7 +11,7 @@ class Competition():
     active = ""
     videos = []
 
-    def create(self,username, name, image, startDate, endDate,description,url,active ):
+    def create(self, username, name, image, startDate, endDate, description, url, active ):
 
         competition = {
             'name' : name,
@@ -25,16 +25,16 @@ class Competition():
         }
 
         id_competition = Connection().db.Competition.insert_one(competition).inserted_id
-        self.update_url(id_competition,"/competitions/" + str(id_competition))
+        self.update_url(id_competition, "/competitions/" + str(id_competition))
 
         competitions = Connection().db.Company.find_one({ "username" : username})['competitions']
         competitions.append(id_competition)
         Connection().db.Company.update( { "username" : username }, { "$set" : { 'competitions' : competitions } } )
 
-    def update_url(self,id,url):
-        competition = Connection().db.Competition.update({"_id" : id }, {"$set": {'url':url}})
+    def update_url(self, id, url):
+        Connection().db.Competition.update({"_id" : id }, {"$set": {'url':url}})
 
-    def get(self,id):
+    def get(self, id):
         competition = Connection().db.Competition.find_one({"_id" : id })
 
         self.name = competition['name']
@@ -46,7 +46,11 @@ class Competition():
         self.active = competition['active']
         self.videos = []
 
-    def get_all_by_ids(self,competitions_ids):
+    def get_all(self):
+        competitions_ids = Connection().db.Company.find({'active' : 'true' })['_id']
+        return self.get_all_by_ids(competitions_ids)
+
+    def get_all_by_ids(self, competitions_ids):
         competitions = []
 
         for current_id_competition in competitions_ids:
@@ -55,3 +59,8 @@ class Competition():
 
         return competitions
 
+    def update(self, id, name, description):
+        Connection().db.Competition.update({"_id" : id }, {"$set": {'name' : name, 'description' : description } })
+
+    def finish(self, id):
+        Connection().db.Competition.update({"_id" : id }, {"$set": {'active' : 'false'} })
