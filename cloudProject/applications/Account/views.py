@@ -22,13 +22,13 @@ class signin(TemplateView):
 
     def post(self,request,*args, **kwargs):
 
+        company = Company()
+
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = auth.authenticate(username=username, password=password)
 
-        if user is not None and user.is_active:
-            # Correct password, and the user is marked "active"
-            auth.login(request, user)
+        if company.validate_signin(username,password):
+            #Session().login(id)
             return HttpResponse(status=200)
         else:
             return HttpResponse(status=401)

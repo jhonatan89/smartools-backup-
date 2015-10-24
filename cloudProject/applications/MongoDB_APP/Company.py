@@ -31,6 +31,16 @@ class Company():
         else :
             return False
 
+    def validate_signin(self, username,password):
+        connection = Connection()
+
+        user_count = connection.db.Company.find({ "username" : username, "password": password }).count()
+
+        if user_count > 0:
+            return True
+        else :
+            return False
+
     def get_id_by_username(self, username):
         connection = Connection()
         return connection.db.Company.find_one({ "username" : username })['_id']
