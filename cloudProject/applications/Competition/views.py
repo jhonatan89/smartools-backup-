@@ -20,15 +20,15 @@ from cloudProject.applications.Competition.forms import CreateNewCompetition
 
 def index(request):
     if Session().verify_current_session(request.COOKIES['userId']):
-        try:
-            user_id = request.user.id
-            company = User.objects.get(id=user_id)
-        except:
-            company = User.objects.get(id=-1)
-
+        # try:
+        #     user_id = request.user.id
+        #     company = User.objects.get(id=user_id)
+        # except:
+        #     company = User.objects.get(id=-1)
+        #
         form = CreateNewCompetition()
 
-        competitions_list = Competition.objects.filter(Q(company=company) & Q(active=True))
+        competitions_list = []
 
         paginator = Paginator(competitions_list, 50)
 
