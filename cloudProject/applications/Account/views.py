@@ -2,6 +2,8 @@ import json
 
 from django.shortcuts import  HttpResponseRedirect,HttpResponse,render_to_response
 from django.contrib import auth
+from cloudProject.applications.Account.set_cookie import set_cookie
+from session import Session
 from django.contrib.auth.models import User, Group
 from django.views.generic import TemplateView
 from cloudProject.applications.MongoDB_APP.Company import Company
@@ -21,22 +23,22 @@ def forbidden(request):
 class signin(TemplateView):
 
     def post(self,request,*args, **kwargs):
-
         company = Company()
 
         username = request.POST.get('username')
         password = request.POST.get('password')
 
         if company.validate_signin(username,password):
-            #Session().login(id)
-            return HttpResponse(status=200)
+            Session().do_login(username)
+            response = HttpResponse(status=200)
+            set_cookie(response, 'userId', username)
+            return response
         else:
             return HttpResponse(status=401)
 
 class signup(TemplateView):
 
     def post(self,request,*args, **kwargs):
-
         diccionario={}
 
         company = Company()

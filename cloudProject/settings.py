@@ -67,6 +67,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    #'cached_auth.Middleware',
 )
 
 ROOT_URLCONF = 'cloudProject.urls'
@@ -158,3 +159,4 @@ SERVER_EMAIL = 'smarttoolssaas@gmail.com'
 
 AWS_SES_REGION_NAME = 'us-west-2'
 AWS_SES_REGION_ENDPOINT = 'email.us-west-2.amazonaws.com'
+

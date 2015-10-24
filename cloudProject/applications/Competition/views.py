@@ -6,20 +6,30 @@ from django.utils.timezone import utc
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 from django.views.generic import TemplateView
 
+
+#Impor auth
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+
 #Import Models
-from cloudProject.applications.MongoDB_APP.Company import Company
-from cloudProject.applications.MongoDB_APP.Competition import Competition
+from cloudProject.applications.Competition.models import Competition
 
 #Import Forms
 from cloudProject.applications.Competition.forms import CreateNewCompetition
 
+
+@login_required(login_url='/account/forbbiden/')
 def index(request):
 
-    company ="ca1"
+    try:
+        user_id = request.user.id
+        company = User.objects.get(id=user_id)
+    except:
+        company = User.objects.get(id=-1)
 
     form = CreateNewCompetition()
 
-    competitions_list = Company().get_competitions(company)
+    competitions_list = Competition.objects.filter(Q(company=company) & Q(active=True))
 
     paginator = Paginator(competitions_list, 50)
 
@@ -37,15 +47,26 @@ def index(request):
     ctx= {'competitions':competitions,'form': form}
 
     if request.method == 'POST':
+        print request.POST['name']
+        print request.FILES['image']
+        print request.POST['description']
+        print request.POST.get('startDate')
+        print request.POST.get('endDate')
         form = CreateNewCompetition(request.POST, request.FILES)
         #if form.is_valid():
-        competition_id = Competition().create(name=request.POST['name'],
+        print (request.POST.get('startDate'))
+        print('valid')
+        new_competition = Competition(name=request.POST['name'],
                                       image=request.FILES['image'],
                                       description=request.POST['description'],
                                       startDate=request.POST.get('startDate'),
                                       endDate=request.POST.get('endDate'),
                                       url='url',
-                                      active=True)
+                                      active=True,
+                                      company=company)
+        new_competition.save(form)
+        new_competition.url="/competitions/" + str(new_competition.id)
+        new_competition.save()
 
         ctx['resp'] = 'OK'
 
