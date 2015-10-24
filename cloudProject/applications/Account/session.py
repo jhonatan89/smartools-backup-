@@ -4,10 +4,10 @@ from cloudProject.applications.Account.cachiersm import Connection_cache
 class Session():
     @staticmethod
     def do_login(user_id):
-        print "llego al login"
         id = str(user_id)
         logged_users = Connection_cache().get_cache('logged')
         if not logged_users:
+            print "creo array"
             logged_users = []
         try:
             logged_users.index(id)
@@ -16,7 +16,6 @@ class Session():
             Connection_cache().set_cache('logged', logged_users)
 
     def do_logout(user_id):
-        print "llego al logout"
         id = str(user_id)
         logged_users = Connection_cache().get_cache('logged')
         if logged_users:
