@@ -1,4 +1,5 @@
 from cloudProject.applications.MongoDB_APP.connection_params import Connection
+from cloudProject.applications.MongoDB_APP.Competition import Competition
 
 class Company():
 
@@ -6,21 +7,20 @@ class Company():
     username = ""
     email = ""
     password = ""
+    competitions = []
 
     def create(self, companyName, username, email, password):
-        print "to connect"
         conn = Connection()
-        print "conected"
-        client = {
+
+        company = {
             'companyName' : companyName,
             'username' : username,
             'email' : email,
-            'password' : password
+            'password' : password,
+            'competitions' : []
         }
-        print "client"
-        print client
 
-        conn.db.Company.insert(client)
+        conn.db.Company.insert(company)
 
     def username_exist(self, username):
         connection = Connection()
@@ -41,6 +41,8 @@ class Company():
         else :
             return False
 
-    def get_id_by_username(self, username):
-        connection = Connection()
-        return connection.db.Company.find_one({ "username" : username })['_id']
+    def get_competitions(self, username):
+
+        competitions_ids = Connection().db.Company.find_one({ "username" : username, 'active' : 'true' })['competitions']
+        self.competitions = Competition().get_all_by_ids(competitions_ids)
+
