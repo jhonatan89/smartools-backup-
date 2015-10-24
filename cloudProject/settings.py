@@ -62,12 +62,12 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    #'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'cached_auth.Middleware',
+    #'cached_auth.Middleware',
 )
 
 ROOT_URLCONF = 'cloudProject.urls'
@@ -160,12 +160,3 @@ SERVER_EMAIL = 'smarttoolssaas@gmail.com'
 AWS_SES_REGION_NAME = 'us-west-2'
 AWS_SES_REGION_ENDPOINT = 'email.us-west-2.amazonaws.com'
 
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
-        'LOCATION': 'smarttoolsv2.1giena.cfg.usw2.cache.amazonaws.com:11211',
-        'TIMEOUT': 36000,
-    }
-}
