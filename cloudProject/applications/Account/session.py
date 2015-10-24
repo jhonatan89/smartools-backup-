@@ -1,14 +1,14 @@
-from django.core.cache import cache
+from cloudProject.applications.Account.cache import Connection_cache
 
 
 class Session():
     def do_login(self, user_id):
         id = str(user_id)
-        logged_list = cache.get('logged')
-        if not logged_list:
-            logged_list = []
+        logged_users = Connection_cache.get('logged')
+        if not logged_users:
+            logged_users = []
             try:
-                logged_list.index(id)
+                logged_users.index(id)
             except ValueError:
-                logged_list.append(id)
-                cache.set('logged', logged_list)
+                logged_users.append(id)
+                Connection_cache.set('logged', logged_users)
