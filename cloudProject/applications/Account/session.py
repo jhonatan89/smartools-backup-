@@ -13,3 +13,25 @@ class Session():
         except ValueError:
             logged_users.append(id)
             Connection_cache().set_cache('logged', logged_users)
+
+    def do_logout(self, user_id):
+        print "llego al logout"
+        id = str(user_id)
+        logged_users = Connection_cache().get_cache('logged')
+        if logged_users:
+            logged_users.remove(id)
+            Connection_cache().set_cache('logged', logged_users)
+
+
+    def verify_current_session(self, user_id):
+        print "llego al verify"
+        id = str(user_id)
+        logged_users = Connection_cache().get_cache('logged')
+        if logged_users:
+            try:
+                logged_users.index(id)
+                return True
+            except:
+                return False
+        else:
+            return False

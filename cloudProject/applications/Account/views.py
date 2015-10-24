@@ -2,6 +2,7 @@ import json
 
 from django.shortcuts import  HttpResponseRedirect,HttpResponse,render_to_response
 from django.contrib import auth
+from cloudProject.applications.Account.set_cookie import set_cookie
 from session import Session
 from django.contrib.auth.models import User, Group
 from django.views.generic import TemplateView
@@ -29,8 +30,9 @@ class signin(TemplateView):
 
         if company.validate_signin(username,password):
             Session().do_login(username)
-            print "guardo"
-            return HttpResponse(status=200)
+            response = HttpResponse(status=200)
+            set_cookie(response, 'userId', username)
+            return response
         else:
             return HttpResponse(status=401)
 
