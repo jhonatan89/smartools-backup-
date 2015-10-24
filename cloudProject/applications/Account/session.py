@@ -2,7 +2,8 @@ from cloudProject.applications.Account.cachiersm import Connection_cache
 
 
 class Session():
-    def do_login(self, user_id):
+    @staticmethod
+    def do_login(user_id):
         print "llego al login"
         id = str(user_id)
         logged_users = Connection_cache().get_cache('logged')
@@ -14,7 +15,7 @@ class Session():
             logged_users.append(id)
             Connection_cache().set_cache('logged', logged_users)
 
-    def do_logout(self, user_id):
+    def do_logout(user_id):
         print "llego al logout"
         id = str(user_id)
         logged_users = Connection_cache().get_cache('logged')
@@ -22,16 +23,20 @@ class Session():
             logged_users.remove(id)
             Connection_cache().set_cache('logged', logged_users)
 
-
-    def verify_current_session(self, user_id):
-        print "llego al verify"
+    @staticmethod
+    def verify_current_session(user_id):
+        print "llego al verify" + user_id
         id = str(user_id)
         logged_users = Connection_cache().get_cache('logged')
+        print logged_users
         if logged_users:
             try:
                 logged_users.index(id)
+                print "llego a logged"
                 return True
             except:
+                print "llego a exception"
                 return False
         else:
+            print "porqueee"
             return False
