@@ -62,6 +62,7 @@ class Competition():
         print id
         competition = Connection().db.Competition.find_one({'_id' : ObjectId(id)})
 
+        self.id = id
         self.name = competition['name']
         self.image = competition['image']
         self.startDate = competition['startDate']
