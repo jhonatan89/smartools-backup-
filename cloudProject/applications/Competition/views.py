@@ -24,8 +24,8 @@ def index(request):
         form = CreateNewCompetition()
 
         obj_company = Company()
-        company.get_competitions(company)
-        competitions_list = company.competitions
+        obj_company.get_competitions(company)
+        competitions_list = obj_company.competitions
         print competitions_list
         print len(competitions_list)
 
