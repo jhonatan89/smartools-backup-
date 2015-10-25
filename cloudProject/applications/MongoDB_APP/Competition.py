@@ -58,16 +58,16 @@ class Competition():
 
     def get(self, id):
         competition = Connection().db.Competition.find_one({'_id' : ObjectId(id), 'active':'true'})
-
-        self.id = id
-        self.name = competition['name']
-        self.image = competition['image']
-        self.startDate = competition['startDate']
-        self.endDate = competition['endDate']
-        self.description = competition['description']
-        self.url = competition['url']
-        self.active = competition['active']
-        self.videos = []
+        if competition :
+            self.id = id
+            self.name = competition['name']
+            self.image = competition['image']
+            self.startDate = competition['startDate']
+            self.endDate = competition['endDate']
+            self.description = competition['description']
+            self.url = competition['url']
+            self.active = competition['active']
+            self.videos = []
 
     def get_all(self):
         competitions_ids = Connection().db.Competition.find({'active' : 'true' })['_id']
@@ -78,7 +78,8 @@ class Competition():
 
         for current_id_competition in competitions_ids:
             obj_competition = Competition()
-            obj_competition.get(current_id_competition)
+            if obj_competition.name == "":
+                obj_competition.get(current_id_competition)
 
             competitions.append(obj_competition)
 
