@@ -1,5 +1,7 @@
 from cloudProject.applications.MongoDB_APP.connection_params import Connection
 
+from bson.objectid import ObjectId
+
 class Competition():
 
     name = ""
@@ -35,7 +37,7 @@ class Competition():
         Connection().db.Competition.update({"_id" : id }, {"$set": {'url':url}})
 
     def get(self, id):
-        competition = Connection().db.Competition.find_one({"_id" : id , "active" : "true"})
+        competition = Connection().db.Competition.find_one({"_id" : ObjectId(id), "active" : "true"})
 
         self.name = competition['name']
         self.image = competition['image']
