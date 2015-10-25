@@ -20,6 +20,7 @@ from cloudProject.applications.Competition.forms import CreateNewCompetition
 def index(request):
     company = get_cookie(request, 'userId')
     user = Session.verify_current_session(company)
+    print user
     if user.isverify:
         form = CreateNewCompetition()
 
