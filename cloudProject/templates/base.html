@@ -65,11 +65,11 @@ $(document).ready(function(){
             <ul class="nav navbar-nav navbar-right">
                 <!--<li><a href="#">Link</a></li>-->
                 <li class="dropdown">
-                    {% if user.is_authenticated %}
+                    {% if user.isverify %}
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false"><B>{{user.first_name}}</B><span class="caret"></span></a>
+                       aria-expanded="false"><B>{{user.name}}</B><span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/account/signout">Sing out <span class="glyphicon glyphicon-log-out"></span></a>
+                        <li><a href="/account/signout">Sign out <span class="glyphicon glyphicon-log-out"></span></a>
                         </li>
                     </ul>
                     {% else %}
