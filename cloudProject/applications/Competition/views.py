@@ -9,6 +9,7 @@ from cloudProject.applications.Account.session import Session
 
 
 #Import Models
+from cloudProject.applications.Account.Cookie_utils import get_cookie
 from cloudProject.applications.MongoDB_APP.Company import Company
 from cloudProject.applications.MongoDB_APP.Competition import Competition
 
@@ -17,16 +18,14 @@ from cloudProject.applications.Competition.forms import CreateNewCompetition
 
 
 def index(request):
-    user_name = request.COOKIES['userId']
-    print user_name
-    if Session.verify_current_session(user_name):
-        print "entro a index"
-        company = user_name
+    company = get_cookie(request, 'userId')
+    print company + " comp"
+    if Session.verify_current_session(company):
 
         form = CreateNewCompetition()
 
-        competitions_list = Company().get_competitions(company)
-
+        # competitions_list = Company().get_competitions(company)
+        competitions_list = []
         paginator = Paginator(competitions_list, 50)
 
         page = request.GET.get('page')
@@ -45,8 +44,8 @@ def index(request):
         if request.method == 'POST':
             form = CreateNewCompetition(request.POST, request.FILES)
             #if form.is_valid():
-            Competition().create(name=request.POST['name'],
-                                      image="image file",
+            Competition().create(username=company, name=request.POST['name'],
+                                      image=request.FILES['image'],
                                       description=request.POST['description'],
                                       startDate=request.POST.get('startDate'),
                                       endDate=request.POST.get('endDate'),

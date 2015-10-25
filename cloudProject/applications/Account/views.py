@@ -2,7 +2,7 @@ import json
 
 from django.shortcuts import  HttpResponseRedirect,HttpResponse,render_to_response
 from django.contrib import auth
-from cloudProject.applications.Account.set_cookie import set_cookie
+from cloudProject.applications.Account.Cookie_utils import set_cookie
 from session import Session
 from django.contrib.auth.models import User, Group
 from django.views.generic import TemplateView
