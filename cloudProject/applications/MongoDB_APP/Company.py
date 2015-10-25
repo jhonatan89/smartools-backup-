@@ -43,6 +43,9 @@ class Company():
 
     def get_competitions(self, username):
 
-        competitions_ids = Connection().db.Company.find({ "username" : username, 'active' : 'true' })['competitions']
-        self.competitions = Competition().get_all_by_ids(competitions_ids)
+        if Connection().db.Company.find({ "username" : username, 'active' : 'true' }) > 0 :
+            competitions_ids = Connection().db.Company.find({ "username" : username, 'active' : 'true' })['competitions']
+            self.competitions = Competition().get_all_by_ids(competitions_ids)
+        else:
+            self.competitions= Competition().get_all_by_ids([])
 

@@ -24,8 +24,8 @@ def index(request):
 
         form = CreateNewCompetition()
 
-        # competitions_list = Company().get_competitions(company)
-        competitions_list = []
+        competitions_list = Company().get_competitions(company)
+        #competitions_list = []
         paginator = Paginator(competitions_list, 50)
 
         page = request.GET.get('page')
