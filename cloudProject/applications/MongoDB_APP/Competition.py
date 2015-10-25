@@ -58,8 +58,11 @@ class Competition():
         for current_id_competition in competitions_ids:
             competition = Competition()
             competition.get(current_id_competition)
-            competition.append(competition)
 
+            competitions.append(competition)
+        print "Method:get_all_by_ids"
+        print "competitions"
+        print competitions
         return competitions
 
     def update(self, id, name, description):
