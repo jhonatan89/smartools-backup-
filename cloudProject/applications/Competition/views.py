@@ -24,8 +24,8 @@ def index(request):
 
         form = CreateNewCompetition()
 
-        # competitions_list = Company().get_competitions(company)
-        competitions_list = []
+        competitions_list = Company().get_competitions(company)
+        #competitions_list = []
         paginator = Paginator(competitions_list, 50)
 
         page = request.GET.get('page')
@@ -45,12 +45,12 @@ def index(request):
             form = CreateNewCompetition(request.POST, request.FILES)
             #if form.is_valid():
             Competition().create(username=company, name=request.POST['name'],
-                                      image=request.FILES['image'],
+                                      image="image file",
                                       description=request.POST['description'],
                                       startDate=request.POST.get('startDate'),
                                       endDate=request.POST.get('endDate'),
                                       url='url',
-                                      active=True)
+                                      active="true")
 
             ctx['resp'] = 'OK'
 
