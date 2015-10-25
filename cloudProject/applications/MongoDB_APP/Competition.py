@@ -52,14 +52,13 @@ class Competition():
         self.videos = []
 
     def get_all(self):
-        competitions_ids = Connection().db.Company.find({'active' : 'true' })['_id']
+        competitions_ids = Connection().db.Competition.find({'active' : 'true' })['_id']
         return self.get_all_by_ids(competitions_ids)
 
     def get_all_by_ids(self, competitions_ids):
         competitions = []
 
         for current_id_competition in competitions_ids:
-            competition = Competition()
             self.get(current_id_competition)
 
             competitions.append(self)
