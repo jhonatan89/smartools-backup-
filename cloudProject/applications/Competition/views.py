@@ -23,7 +23,7 @@ def index(request):
 
         form = CreateNewCompetition()
 
-        company = Company()
+        obj_company = Company()
         company.get_competitions(company)
         competitions_list = company.competitions
         print competitions_list
