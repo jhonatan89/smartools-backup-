@@ -71,9 +71,27 @@ class Competition():
         else:
             self.name="INATIVE"
 
+    def mongo_to_model(self, competition):
+        self.id = competition['_id']
+        self.name = competition['name']
+        self.image = competition['image']
+        self.startDate = competition['startDate']
+        self.endDate = competition['endDate']
+        self.description = competition['description']
+        self.url = competition['url']
+        self.active = competition['active']
+        self.videos = []
+
     def get_all(self):
-        competitions_ids = Connection().db.Competition.find_one({'active' : 'true' })['_id']
-        return self.get_all_by_ids(competitions_ids)
+        competitions_ids = Connection().db.Competition.find({'active' : 'true' })
+        competitions = []
+
+        for current_id_competition in competitions_ids:
+            obj_competitions = competitions()
+            obj_competitions.mongo_to_model(current_id_competition)
+            competitions.append(obj_competitions)
+
+        return competitions
 
     def get_all_by_ids(self, competitions_ids):
         competitions = []
