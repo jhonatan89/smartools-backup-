@@ -80,9 +80,10 @@ class Competition():
         competitions = []
 
         for current_id_competition in competitions_ids:
-            self.get(current_id_competition)
+            obj_competition = Competition()
+            obj_competition.get(current_id_competition)
 
-            competitions.append(self)
+            competitions.append(obj_competition)
         print "Method:get_all_by_ids"
         print "competitions"
         print competitions
