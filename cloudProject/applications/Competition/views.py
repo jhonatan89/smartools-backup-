@@ -24,9 +24,10 @@ def index(request):
         form = CreateNewCompetition()
 
         competitions_list = Company().get_competitions(company)
+        print competitions_list
         #competitions_list = []
         print len(competitions_list)
-        print competitions_list
+
         paginator = Paginator(competitions_list, 50)
 
         page = request.GET.get('page')
