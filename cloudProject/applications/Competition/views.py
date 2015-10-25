@@ -9,7 +9,7 @@ from cloudProject.applications.Account.session import Session
 
 
 #Import Models
-from cloudProject.applications.Account.set_cookie import get_cookie
+from cloudProject.applications.Account.Cookie_utils import get_cookie
 from cloudProject.applications.MongoDB_APP.Company import Company
 from cloudProject.applications.MongoDB_APP.Competition import Competition
 
@@ -18,7 +18,7 @@ from cloudProject.applications.Competition.forms import CreateNewCompetition
 
 
 def index(request):
-    company = get_cookie('userId')
+    company = get_cookie(request, 'userId')
 
     if Session.verify_current_session(company):
 
