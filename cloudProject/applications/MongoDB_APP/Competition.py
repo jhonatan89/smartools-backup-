@@ -57,8 +57,9 @@ class Competition():
         competitions = []
 
         for current_id_competition in competitions_ids:
-            self.get(current_id_competition)
-            competitions.append(self)
+            competition = Competition()
+            competition.get(current_id_competition)
+            competitions.append(competition)
 
         return competitions
 
