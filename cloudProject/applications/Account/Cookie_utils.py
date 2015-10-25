@@ -1,5 +1,4 @@
 import datetime
-from cloudProject.applications.Account.session import Session
 
 
 def set_cookie(response, key, value, days_expire=7):
