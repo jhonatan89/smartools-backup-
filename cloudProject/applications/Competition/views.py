@@ -50,7 +50,7 @@ def index(request):
                                       startDate=request.POST.get('startDate'),
                                       endDate=request.POST.get('endDate'),
                                       url='url',
-                                      active=True)
+                                      active="true")
 
             ctx['resp'] = 'OK'
 
