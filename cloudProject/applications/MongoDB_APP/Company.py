@@ -3,6 +3,7 @@ from cloudProject.applications.MongoDB_APP.Competition import Competition
 
 class Company():
 
+    id = ""
     companyName = ""
     username = ""
     email = ""

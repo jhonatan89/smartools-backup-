@@ -2,8 +2,11 @@ from cloudProject.applications.MongoDB_APP.connection_params import Connection
 
 from bson.objectid import ObjectId
 
+from django.utils.encoding import smart_unicode
+
 class Competition():
 
+    id = ""
     name = ""
     image = ""
     startDate = ""
@@ -32,6 +35,23 @@ class Competition():
         competitions = Connection().db.Company.find_one({ "username" : username})['competitions']
         competitions.append(id_competition)
         Connection().db.Company.update( { "username" : username }, { "$set" : { 'competitions' : competitions } } )
+
+    def __unicode__(self):
+        title = "%s" % (smart_unicode(self.name))
+        return title
+
+    def get_competition_url(self):
+        # return "http://" + platform.node() + ":8000" + "/competitions/%s/" % (self.id)
+        return "/competitions/%s/show/" % (self.id)
+
+    def get_finish_competition_url(self):
+        return "/competitions/%s/finish/" % (self.id)
+
+    def get_edit_competition_url(self):
+        return "/competitions/%s/edit/" % (self.id)
+
+    def get_upload_video_url(self):
+        return "/competitions/%s/upload/" % (self.id)
 
     def update_url(self, id, url):
         Connection().db.Competition.update({"_id" : id }, {"$set": {'url':url}})
