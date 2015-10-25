@@ -37,7 +37,7 @@ class Competition():
         Connection().db.Competition.update({"_id" : id }, {"$set": {'url':url}})
 
     def get(self, id):
-        competition = Connection().db.Competition.find_one({'_id' : ObjectId(id), "active" : "true"})
+        competition = Connection().db.Competition.find_one({'_id' : ObjectId(id)})
         print competition
 
         self.name = competition['name']
