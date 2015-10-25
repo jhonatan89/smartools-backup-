@@ -60,9 +60,9 @@ class Competition():
 
         for current_id_competition in competitions_ids:
             competition = Competition()
-            competition.get(current_id_competition)
+            self.get(current_id_competition)
 
-            competitions.append(competition)
+            competitions.append(self)
         print "Method:get_all_by_ids"
         print "competitions"
         print competitions
