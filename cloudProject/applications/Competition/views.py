@@ -22,10 +22,9 @@ def index(request):
     if Session.verify_current_session(company):
 
         form = CreateNewCompetition()
-
+        competitions_list = []
         competitions_list = Company().get_competitions(company)
         print competitions_list
-        #competitions_list = []
         print len(competitions_list)
 
         paginator = Paginator(competitions_list, 50)
