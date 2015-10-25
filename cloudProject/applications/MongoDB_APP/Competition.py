@@ -87,9 +87,9 @@ class Competition():
         competitions = []
 
         for current_id_competition in competitions_ids:
-            obj_competitions = competitions()
-            obj_competitions.mongo_to_model(current_id_competition)
-            competitions.append(obj_competitions)
+            obj_competition = Competition()
+            obj_competition.mongo_to_model(current_id_competition)
+            competitions.append(obj_competition)
 
         return competitions
 
