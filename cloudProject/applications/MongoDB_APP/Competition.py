@@ -89,7 +89,7 @@ class Competition():
         return competitions
 
     def update(self, id, name, description):
-        Connection().db.Competition.update({"_id" : id }, {"$set": {'name' : name, 'description' : description } })
+        Connection().db.Competition.update({"_id" : ObjectId(id) }, {"$set": {'name' : name, 'description' : description } })
 
     def finish(self, id):
-        Connection().db.Competition.update({"_id" : id }, {"$set": {'active' : 'false'} })
+        Connection().db.Competition.update({"_id" : ObjectId(id) }, {"$set": {'active' : 'false'} })
