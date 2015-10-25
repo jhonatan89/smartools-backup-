@@ -26,8 +26,6 @@ def index(request):
         obj_company = Company()
         obj_company.get_competitions(company)
         competitions_list = obj_company.competitions
-        print competitions_list
-        print len(competitions_list)
 
         paginator = Paginator(competitions_list, 50)
 

@@ -57,10 +57,7 @@ class Competition():
         Connection().db.Competition.update({"_id" : id }, {"$set": {'url':url}})
 
     def get(self, id):
-        print "Method get:"
-        print "id:"
-        print id
-        competition = Connection().db.Competition.find_one({'_id' : ObjectId(id)})
+        competition = Connection().db.Competition.find_one({'_id' : ObjectId(id), 'active':'true'})
 
         self.id = id
         self.name = competition['name']
@@ -84,9 +81,7 @@ class Competition():
             obj_competition.get(current_id_competition)
 
             competitions.append(obj_competition)
-        print "Method:get_all_by_ids"
-        print "competitions"
-        print competitions
+
         return competitions
 
     def update(self, id, name, description):
