@@ -10,7 +10,7 @@ from cloudProject.applications.MongoDB_APP.Company import Company
 
 
 def signout(request):
-    user_id = get_cookie('userId')
+    user_id = get_cookie(request,'userId')
     response = HttpResponseRedirect("/")
     Session().do_logout(response,user_id)
     return response
