@@ -32,7 +32,8 @@ def confirmation_video(request):
 def get_video(request, id_competition):
     videos_per_page = 50
     url = "/competitions/" + id_competition
-    competition = Connection().db.Company.find_one({ "url" : url})
+    print url + " url"
+    competition = Connection().db.Competition.find_one({ "url" : url})
     videos = []
     return render(request, 'Competition/list_public_videos.html',
                     {'videos': videos, 'competition': competition})
