@@ -1,5 +1,4 @@
 import datetime
-from cloudProject.applications.Account.session import Session
 
 
 def set_cookie(response, key, value, days_expire=7):
@@ -22,11 +21,7 @@ def delete_cookie(response, key):
     response.delete_cookie(key)
 
 
-def verify_view(request):
-    user_name = get_cookie(request,'userId')
-    user_is_verify = Session().verify_current_session(get_cookie(request,'userId'))
-    user = {'isverify': user_is_verify,'name': user_name}
-    return user
+
 
 
 
