@@ -69,7 +69,7 @@ class Competition():
             self.active = competition['active']
             self.videos = []
         else:
-            self=None
+            self.name="INATIVE"
 
     def get_all(self):
         competitions_ids = Connection().db.Competition.find({'active' : 'true' })['_id']
@@ -82,7 +82,7 @@ class Competition():
             obj_competition = Competition()
             obj_competition.get(current_id_competition)
 
-            if obj_competition:
+            if obj_competition.name!="INATIVE":
                 competitions.append(obj_competition)
 
         return competitions
