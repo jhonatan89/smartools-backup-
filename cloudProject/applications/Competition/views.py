@@ -45,7 +45,7 @@ def index(request):
             form = CreateNewCompetition(request.POST, request.FILES)
             #if form.is_valid():
             Competition().create(username=company, name=request.POST['name'],
-                                      image=request.FILES['image'],
+                                      image="image file",
                                       description=request.POST['description'],
                                       startDate=request.POST.get('startDate'),
                                       endDate=request.POST.get('endDate'),
