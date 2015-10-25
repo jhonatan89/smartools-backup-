@@ -58,7 +58,7 @@ class Competition():
         for current_id_competition in competitions_ids:
             competition = Competition()
             competition.get(current_id_competition)
-            competitions.append(competition)
+            competition.append(competition)
 
         return competitions
 
