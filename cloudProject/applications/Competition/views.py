@@ -19,8 +19,8 @@ from cloudProject.applications.Competition.forms import CreateNewCompetition
 
 def index(request):
     company = get_cookie(request, 'userId')
+    user = Session.verify_current_session(company)
     if Session.verify_current_session(company):
-
         form = CreateNewCompetition()
 
         obj_company = Company()
@@ -42,7 +42,7 @@ def index(request):
             # If page is out of range (e.g. 9999), deliver last page of results.
             competitions = paginator.page(paginator.num_pages)
 
-        ctx= {'competitions':competitions,'form': form}
+        ctx= {'competitions':competitions,'form': form, 'user': user}
 
         if request.method == 'POST':
             form = CreateNewCompetition(request.POST, request.FILES)
