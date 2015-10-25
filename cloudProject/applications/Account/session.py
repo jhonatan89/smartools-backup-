@@ -16,7 +16,7 @@ class Session():
             logged_users.append(id)
             Connection_cache().set_cache('logged', logged_users)
 
-
+    @staticmethod
     def do_logout(response,user_id):
         id = str(user_id)
         logged_users = Connection_cache().get_cache('logged')
