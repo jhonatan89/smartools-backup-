@@ -23,8 +23,7 @@ class Session():
         if logged_users:
             logged_users.remove(id)
             Connection_cache().set_cache('logged', logged_users)
-            delete_cookie(response, user_id)
-
+            delete_cookie(response,user_id)
 
     @staticmethod
     def verify_current_session(user_id):
@@ -35,8 +34,10 @@ class Session():
         if logged_users:
             try:
                 logged_users.index(id)
-                return True
+                user = {'isverify': True,'name': user_id}
+                return user
             except:
-                return False
+                user = {'isverify': False,'name': ""}
+                return user
         else:
-            return False
+            return {'isverify': False,'name': ""}
