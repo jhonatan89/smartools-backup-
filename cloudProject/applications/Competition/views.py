@@ -19,13 +19,15 @@ from cloudProject.applications.Competition.forms import CreateNewCompetition
 
 def index(request):
     company = get_cookie(request, 'userId')
-    print company + " comp"
     if Session.verify_current_session(company):
 
         form = CreateNewCompetition()
 
         competitions_list = Company().get_competitions(company)
+        print competitions_list
         #competitions_list = []
+        print len(competitions_list)
+
         paginator = Paginator(competitions_list, 50)
 
         page = request.GET.get('page')
