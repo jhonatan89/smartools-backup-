@@ -2,7 +2,7 @@ from cloudProject.applications.MongoDB_APP.connection_params import Connection
 
 from bson.objectid import ObjectId
 
-class Competition():
+class Video():
 
     clientfirtsName = ""
     clientLastName = ""
@@ -30,4 +30,4 @@ class Competition():
             'state' : state
         }
 
-        id_competition = Connection().db.Video.insert_one(video).inserted_id
+        id_video = Connection().db.Video.insert_one(video).inserted_id
