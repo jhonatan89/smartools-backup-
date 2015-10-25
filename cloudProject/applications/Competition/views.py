@@ -22,8 +22,10 @@ def index(request):
     if Session.verify_current_session(company):
 
         form = CreateNewCompetition()
-        competitions_list = []
-        competitions_list = Company().get_competitions(company)
+
+        company = Company()
+        company.get_competitions(company)
+        competitions_list = company.competitions
         print competitions_list
         print len(competitions_list)
 
