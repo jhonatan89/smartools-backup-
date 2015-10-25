@@ -16,3 +16,6 @@ def get_cookie(request, key):
         return request.COOKIES[key]
     else:
         return ""
+
+def delete_cookie(response, key):
+    response.delete_cookie(key)
