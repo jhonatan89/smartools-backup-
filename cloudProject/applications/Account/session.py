@@ -35,11 +35,8 @@ class Session():
         if logged_users:
             try:
                 logged_users.index(id)
-                print "llego a logged"
                 return True
             except:
-                print "llego a exception"
                 return False
         else:
-            print "porqueee"
             return False
