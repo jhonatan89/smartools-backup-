@@ -72,7 +72,7 @@ class Competition():
             self.name="INATIVE"
 
     def get_all(self):
-        competitions_ids = Connection().db.Competition.find({'active' : 'true' })['_id']
+        competitions_ids = Connection().db.Competition.find_one({'active' : 'true' })['_id']
         return self.get_all_by_ids(competitions_ids)
 
     def get_all_by_ids(self, competitions_ids):
