@@ -45,6 +45,8 @@ class Video():
         else:
             video = Connection().db.Video.find_one({'_id' : ObjectId(id)})
 
+        print "video"
+
         if video:
             self.id = id
             self.clientfirtsName = video['clientfirtsName']
@@ -67,6 +69,7 @@ class Video():
             obj_video.get(current_id_video, status)
 
             if obj_video.description!="62e12228-200e-4160-b3b7-571fdd70d434":
+                print "video appended"
                 videos.append(obj_video)
 
         return videos
