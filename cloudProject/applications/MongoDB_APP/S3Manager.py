@@ -6,7 +6,7 @@ from datetime import datetime
 
 class S3Manager():
 
-    def upload_media(self,path, file):
+    def upload_memory_media(self,path, file):
         try:
             print "method:upload_media"
             conn = boto.connect_s3(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
@@ -15,11 +15,29 @@ class S3Manager():
             print "connected to bucket"
             k = Key(bucket)
             print "Key(bucket)"
-            k.key = path +  '/'+ datetime.now().strftime("%Y/%m/%d") + '/' + file.name
+            k.key = path + '/' + file.name
             print k.key
-            #k.set_contents_from_filename(url_tmp + 'media/' + video_conv)
             print "ready to upload"
             k.set_contents_from_string(file.read())
+            print "doit uploaded"
+        except ValueError:
+            print 'There is a error in the convert process'
+
+        return k.key
+
+    def upload_disk_media(self,path, file):
+        try:
+            print "method:upload_media"
+            conn = boto.connect_s3(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+            print "connected to S3"
+            bucket = conn.get_bucket(AWS_STORAGE_BUCKET_NAME)
+            print "connected to bucket"
+            k = Key(bucket)
+            print "Key(bucket)"
+            k.key = path + '/' + file.name
+            print k.key
+            print "ready to upload"
+            k.set_contents_from_filename(url_tmp + 'media/' + video_conv)
             print "doit uploaded"
         except ValueError:
             print 'There is a error in the convert process'

@@ -5,6 +5,7 @@ from cloudProject.applications.Video.forms import UploadVideo
 from cloudProject.applications.MongoDB_APP.Competition import Competition
 from cloudProject.applications.MongoDB_APP.Video import Video
 from cloudProject.applications.MongoDB_APP.S3Manager import S3Manager
+from datetime import datetime
 
 
 # Create your views here.
@@ -15,7 +16,8 @@ def upload_video(request, id_competition):
     if request.method == 'POST':
         form = UploadVideo(request.POST, request.FILES)
         if form.is_valid():
-            file_path = S3Manager().upload_media('media/ImageCompetitions', request.FILES['originalVideoPath'])
+            file_path = S3Manager().upload_memory_media('media/Video/' + datetime.now().strftime("%Y/%m/%d"),
+                                                        request.FILES['originalVideoPath'])
             Video().create(id_competition=id_competition,
                               title=request.POST['title'],
                               originalVideoPath=file_path,
