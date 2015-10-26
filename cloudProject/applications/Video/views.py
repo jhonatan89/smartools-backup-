@@ -35,7 +35,8 @@ def get_video(request, id_competition):
     print "methon:get_video"
     print "id_competition"
     print id_competition
-    competition = Competition().get(id_competition)
+    competition = Competition()
+    competition.get(id_competition)
     print competition
     videos_per_page = 50
     url = "/competitions/" + id_competition
