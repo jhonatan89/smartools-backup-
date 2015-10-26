@@ -115,5 +115,5 @@ class Competition():
 
     def get_videos(self,id, status):
         videos_id = Connection().db.Competition.find_one({ "_id" : ObjectId(id) })['videos']
-        print competitions_ids
+        print videos_id
         self.videos = Video().get_all_by_ids(videos_id, status)
