@@ -29,16 +29,15 @@ def upload_video(request, id_competition):
         print competition.name
     return render(request, 'Video/index.html', {'form': form, 'competition': competition})
 
-
 def confirmation_video(request):
     return render_to_response('Video/confirmation.html')
 
-
 def get_video(request, id_competition):
+    competition = Competition().get(id_competition)
     videos_per_page = 50
     url = "/competitions/" + id_competition
-    print url + " url"
-    competition = Connection().db.Competition.find_one({ "url" : url})
+    #print url + " url"
+    #competition = Connection().db.Competition.find_one({ "url" : url})
     videos = []
     return render(request, 'Competition/list_public_videos.html',
                     {'videos': videos, 'competition': competition})
