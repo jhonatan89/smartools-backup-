@@ -1,4 +1,5 @@
 from cloudProject.applications.MongoDB_APP.connection_params import Connection
+from cloudProject.applications.MongoDB_APP.Video import Video
 
 from bson.objectid import ObjectId
 
@@ -58,6 +59,7 @@ class Competition():
 
     def get(self, id):
         competition = Connection().db.Competition.find_one({'_id' : ObjectId(id), 'active':'true'})
+
         if competition :
             self.id = id
             self.name = competition['name']
@@ -69,7 +71,7 @@ class Competition():
             self.active = competition['active']
             self.videos = []
         else:
-            self.name="INATIVE"
+            self.name="62e12228-200e-4160-b3b7-571fdd70d434"
 
     def mongo_to_model(self, competition):
         self.id = competition['_id']
@@ -100,7 +102,7 @@ class Competition():
             obj_competition = Competition()
             obj_competition.get(current_id_competition)
 
-            if obj_competition.name!="INATIVE":
+            if obj_competition.name!="62e12228-200e-4160-b3b7-571fdd70d434":
                 competitions.append(obj_competition)
 
         return competitions
@@ -110,3 +112,7 @@ class Competition():
 
     def finish(self, id):
         Connection().db.Competition.update({"_id" : ObjectId(id) }, {"$set": {'active' : 'false'} })
+
+    def get_videos(self,id, status):
+        competitions_ids = Connection().db.Company.find_one({ "_id" : ObjectId(id) })['videos']
+        self.videos = Video().get_all_by_ids(competitions_ids, status)

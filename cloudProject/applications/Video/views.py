@@ -1,14 +1,12 @@
 from django.shortcuts import render, render_to_response
-from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
-from cloudProject.applications.MongoDB_APP.connection_params import Connection
 from cloudProject.applications.Video.forms import UploadVideo
 from cloudProject.applications.MongoDB_APP.Competition import Competition
 from cloudProject.applications.MongoDB_APP.Video import Video
 from cloudProject.applications.MongoDB_APP.S3Manager import S3Manager
+from cloudProject.applications.Account.Cookie_utils import get_cookie
+from cloudProject.applications.Account.session import Session
+from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 from datetime import datetime
-
-
-# Create your views here.
 
 def upload_video(request, id_competition):
     competition = Competition()
@@ -34,12 +32,29 @@ def confirmation_video(request):
     return render_to_response('Video/confirmation.html')
 
 def get_video(request, id_competition):
+    list_video = []
     competition = Competition()
-    competition.get(id_competition)
+    company = get_cookie(request, 'userId')
+
+    if Session.verify_current_session(company):
+        list_video = competition.get(id_competition, "ANY")
+    else:
+        list_video = competition.get(id_competition, "CON")
+
     videos_per_page = 50
-    url = "/competitions/" + id_competition
-    #print url + " url"
-    #competition = Connection().db.Competition.find_one({ "url" : url})
-    videos = []
-    return render(request, 'Competition/list_public_videos.html',
-                    {'videos': videos, 'competition': competition})
+    paginator = Paginator(list_video, videos_per_page)
+    page = request.GET.get('page')
+
+    try:
+        videos = paginator.page(page)
+    except PageNotAnInteger:
+        videos = paginator.page(1)
+    except EmptyPage:
+        videos = paginator.page(paginator.num_pages)
+
+    if Session.verify_current_session(company):
+        return render(request, 'Competition/list_admin_videos.html',
+                      {'videos': videos, 'competition': competition})
+    else:
+        return render(request, 'Competition/list_public_videos.html',
+                      {'videos': videos, 'competition': competition})
