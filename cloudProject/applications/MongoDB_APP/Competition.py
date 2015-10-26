@@ -114,5 +114,5 @@ class Competition():
         Connection().db.Competition.update({"_id" : ObjectId(id) }, {"$set": {'active' : 'false'} })
 
     def get_videos(self,id, status):
-        competitions_ids = Connection().db.Company.find_one({ "_id" : ObjectId(id) })['videos']
+        competitions_ids = Connection().db.Competition.find_one({ "_id" : ObjectId(id) })['videos']
         self.videos = Video().get_all_by_ids(competitions_ids, status)
