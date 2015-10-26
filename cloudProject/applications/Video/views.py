@@ -2,8 +2,7 @@ from django.shortcuts import render, render_to_response
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 from cloudProject.applications.MongoDB_APP.connection_params import Connection
 from cloudProject.applications.Video.forms import UploadVideo
-from cloudProject.applications.Video.models import Video
-from cloudProject.applications.Competition.models import Competition
+from cloudProject.applications.MongoDB_APP.Competition import Competition
 from cloudProject.applications.MongoDB_APP.S3Manager import S3Manager
 
 
