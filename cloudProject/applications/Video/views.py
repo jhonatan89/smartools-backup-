@@ -39,10 +39,12 @@ def get_video(request, id_competition):
 
     if Session.verify_current_session(company):
         print "video logged"
-        list_video = competition.get_videos(id_competition, "ANY")
+        competition.get_videos(id_competition, "ANY")
+        list_video = competition.videos
     else:
         print "video no logge"
-        list_video = competition.get_videos(id_competition, "CON")
+        competition.get_videos(id_competition, "CON")
+        list_video = competition.videos
 
     print "list_video"
     print list_video
