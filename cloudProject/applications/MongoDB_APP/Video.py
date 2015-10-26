@@ -25,7 +25,7 @@ class Video():
             'clientEmail' : clientEmail,
             'title' : title,
             'description' : description,
-            'uploadDate' : datetime.now().strftime(),
+            'uploadDate' : datetime.now(),
             'originalVideoPath' : originalVideoPath,
             'convertedVideoPath' : '',
             'state' : 'WFC'
