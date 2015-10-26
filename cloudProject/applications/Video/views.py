@@ -4,6 +4,7 @@ from cloudProject.applications.MongoDB_APP.connection_params import Connection
 from cloudProject.applications.Video.forms import UploadVideo
 from cloudProject.applications.Video.models import Video
 from cloudProject.applications.Competition.models import Competition
+from cloudProject.applications.MongoDB_APP.S3Manager import S3Manager
 
 
 # Create your views here.
@@ -13,10 +14,14 @@ def upload_video(request, id_competition):
     if request.method == 'POST':
         form = UploadVideo(request.POST, request.FILES)
         if form.is_valid():
-            new_video = Video(title=request.POST['title'], originalVideoPath=request.FILES['originalVideoPath'],
+            file_path = S3Manager().upload_media('media/ImageCompetitions', request.FILES['originalVideoPath'])
+            new_video = Video(title=request.POST['title'],
+                              originalVideoPath=file_path,
                               clientfirtsName=request.POST['clientfirtsName'],
-                              clientLastName=request.POST['clientlastName'], description=request.POST['description'],
-                              clientEmail=request.POST['clientEmail'], competition=competition)
+                              clientLastName=request.POST['clientlastName'],
+                              description=request.POST['description'],
+                              clientEmail=request.POST['clientEmail'],
+                              competition=competition)
             new_video.save(form)
             return render(request, 'Video/confirmation.html', {'competition': competition})
     else:
