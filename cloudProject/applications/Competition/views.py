@@ -46,10 +46,10 @@ def index(request):
         if request.method == 'POST':
             #form = CreateNewCompetition(request.POST, request.FILES)
             #if form.is_valid():
-            S3Manager().upload_media('ImageCompetitions', request.FILES['image'])
+            file_path = S3Manager().upload_media('media/ImageCompetitions', request.FILES['image'])
 
             Competition().create(username=company, name=request.POST['name'],
-                                      image="image file",
+                                      image=file_path,
                                       description=request.POST['description'],
                                       startDate=request.POST.get('startDate'),
                                       endDate=request.POST.get('endDate'),
