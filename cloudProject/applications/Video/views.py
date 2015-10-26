@@ -38,9 +38,9 @@ def get_video(request, id_competition):
     user = Session.verify_current_session(company)
 
     if Session.verify_current_session(company):
-        list_video = competition.get(id_competition, "ANY")
+        list_video = competition.get_videos(id_competition, "ANY")
     else:
-        list_video = competition.get(id_competition, "CON")
+        list_video = competition.get_videos(id_competition, "CON")
 
     videos_per_page = 50
     paginator = Paginator(list_video, videos_per_page)
