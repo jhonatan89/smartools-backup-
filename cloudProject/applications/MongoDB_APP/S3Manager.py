@@ -15,7 +15,7 @@ class S3Manager():
             print "connected to bucket"
             k = Key(bucket)
             print "Key(bucket)"
-            k.key = 'media/' + file_type
+            k.key = 'media/' + file_type + file.name
             print "media file_type"
             #k.set_contents_from_filename(url_tmp + 'media/' + video_conv)
             print "ready to upload"
