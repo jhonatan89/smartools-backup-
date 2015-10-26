@@ -15,8 +15,8 @@ class Video():
     state = ""
 
 
-    def create(self, clientfirtsName, clientLastName, clientEmail, title, description, uploadDate,
-               originalVideoPath, convertedVideoPath, state):
+    def create(self, id_competition, clientfirtsName, clientLastName, clientEmail, title, description,
+               uploadDate, originalVideoPath):
 
         video = {
             'clientfirtsName' : clientfirtsName,
@@ -26,8 +26,13 @@ class Video():
             'description' : description,
             'uploadDate' : uploadDate,
             'originalVideoPath' : originalVideoPath,
-            'convertedVideoPath' : convertedVideoPath,
-            'state' : state
+            'convertedVideoPath' : '',
+            'state' : 'WFC'
         }
 
         id_video = Connection().db.Video.insert_one(video).inserted_id
+
+        videos = Connection().db.Competition.find_one({ "_id" : ObjectId(id_competition)})['videos']
+        videos.append(id_video)
+        Connection().db.Competition.update( { "_id" : ObjectId(id_competition) }, { "$set" : { 'videos' : videos } } )
+

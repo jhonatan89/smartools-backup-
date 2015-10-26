@@ -16,14 +16,14 @@ def upload_video(request, id_competition):
         form = UploadVideo(request.POST, request.FILES)
         if form.is_valid():
             file_path = S3Manager().upload_media('media/ImageCompetitions', request.FILES['originalVideoPath'])
-            new_video = Video(title=request.POST['title'],
+            Video().create(id_competition=id_competition,
+                              title=request.POST['title'],
                               originalVideoPath=file_path,
                               clientfirtsName=request.POST['clientfirtsName'],
                               clientLastName=request.POST['clientlastName'],
                               description=request.POST['description'],
                               clientEmail=request.POST['clientEmail'],
                               competition=competition)
-            new_video.save(form)
             return render(request, 'Video/confirmation.html', {'competition': competition})
     else:
         form = UploadVideo()
