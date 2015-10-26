@@ -44,6 +44,9 @@ def get_video(request, id_competition):
         print "video no logge"
         list_video = competition.get_videos(id_competition, "CON")
 
+    print "list_video"
+    print list_video
+
     videos_per_page = 50
     paginator = Paginator(list_video, videos_per_page)
     page = request.GET.get('page')
