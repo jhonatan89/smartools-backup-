@@ -1,6 +1,7 @@
 from cloudProject.applications.MongoDB_APP.connection_params import Connection
 
 from bson.objectid import ObjectId
+from datetime import datetime
 
 class Video():
 
@@ -16,7 +17,7 @@ class Video():
 
 
     def create(self, id_competition, clientfirtsName, clientLastName, clientEmail, title, description,
-               uploadDate, originalVideoPath):
+               originalVideoPath):
 
         video = {
             'clientfirtsName' : clientfirtsName,
@@ -24,7 +25,7 @@ class Video():
             'clientEmail' : clientEmail,
             'title' : title,
             'description' : description,
-            'uploadDate' : uploadDate,
+            'uploadDate' : datetime.now().strftime(),
             'originalVideoPath' : originalVideoPath,
             'convertedVideoPath' : '',
             'state' : 'WFC'

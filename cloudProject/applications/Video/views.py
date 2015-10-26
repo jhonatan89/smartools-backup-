@@ -22,8 +22,7 @@ def upload_video(request, id_competition):
                               clientfirtsName=request.POST['clientfirtsName'],
                               clientLastName=request.POST['clientlastName'],
                               description=request.POST['description'],
-                              clientEmail=request.POST['clientEmail'],
-                              competition=competition)
+                              clientEmail=request.POST['clientEmail'])
             return render(request, 'Video/confirmation.html', {'competition': competition})
     else:
         form = UploadVideo()
