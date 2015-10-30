@@ -37,7 +37,7 @@ class Video():
         videos = Connection().db.Competition.find_one({ "_id" : ObjectId(id_competition)})['videos']
         videos.append(id_video)
         Connection().db.Competition.update( { "_id" : ObjectId(id_competition) }, { "$set" : { 'videos' : videos } } )
-        from tasks import video_convert
+        from cloudProject.applications.MongoDB_APP.tasks import video_convert
         video_convert.delay(id_video)
 
     def get(self, id, status):
