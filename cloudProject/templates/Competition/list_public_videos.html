@@ -27,7 +27,7 @@
                     <div id="convertedvideo{{forloop.counter}}">
                             <script type="text/javascript">
                                 jwplayer('convertedvideo{{forloop.counter}}').setup({
-                                    file:"{{ MEDIA_CLOUD_FRONT }}{{video.convertedVideoPath}}"
+                                    file:"rtmp://s2j7yqs7egvs36.cloudfront.net:1935/mp4:{{video.convertedVideoPath}}"
                                 });
                             </script>
 
