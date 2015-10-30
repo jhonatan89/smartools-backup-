@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        {% if video.get_state_display == 'Converted' %}
+                        {% if video.state == 'CON' %}
                         CONVERTED VIDEO
                         <div id="convertedvideo{{forloop.counter}}">
                             <script type="text/javascript">
