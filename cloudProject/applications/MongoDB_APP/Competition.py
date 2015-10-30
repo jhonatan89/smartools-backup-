@@ -52,6 +52,9 @@ class Competition():
         return "/competitions/%s/edit/" % (self.id)
 
     def get_upload_video_url(self):
+        print "method upload video url"
+        print "id"
+        print self
         return "/competitions/%s/upload/" % (self.id)
 
     def update_url(self, id, url):
