@@ -15,7 +15,7 @@ def video_convert(self,id):
     print str(id) + "title"
     url_tmp = '/tmp/'
     video = Video()
-    video.get(id)
+    video.get(id,"ANY")
 
 
     try:
