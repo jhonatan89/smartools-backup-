@@ -77,3 +77,7 @@ class Video():
 
         return videos
 
+    def update_to_uploaded(self):
+        connection = Connection()
+        video = Connection().db.Video.update({'_id' : ObjectId(self.id)},{ "$set" : { 'state' : 'CON',
+                                                                                      'convertedVideoPath':self.convertedVideoPath } } )
