@@ -22,8 +22,8 @@ def video_convert(self,id):
         conn = boto.connect_s3(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
         bucket = conn.get_bucket(AWS_STORAGE_BUCKET_NAME)
         video_file = bucket.get_key(str(video.originalVideoPath))
-        if not os.path.exists(url_tmp + 'media/video'):
-            os.makedirs(url_tmp + 'media/video')
+        if not os.path.exists(url_tmp + 'media/Video'):
+            os.makedirs(url_tmp + 'media/Video')
         video_file.get_contents_to_filename(url_tmp + video_file.name)
         video_conv = video.originalVideoPath.name + '.conv.mp4'
         Popen(['ffmpeg', '-i', url_tmp + video_file.name, url_tmp + 'media/' + video_conv]).wait()
