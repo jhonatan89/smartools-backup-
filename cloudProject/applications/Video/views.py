@@ -37,7 +37,7 @@ def get_video(request, id_competition):
     company = get_cookie(request, 'userId')
     user = Session.verify_current_session(company)
 
-    if Session.verify_current_session(company):
+    if user['isverify']:
         print "video logged"
         competition.get_videos(id_competition, "ANY")
         list_video = competition.videos
@@ -60,7 +60,7 @@ def get_video(request, id_competition):
     except EmptyPage:
         videos = paginator.page(paginator.num_pages)
 
-    if Session.verify_current_session(company):
+    if user['isverify']:
         return render(request, 'Competition/list_admin_videos.html',
                       {'videos': videos, 'competition': competition, 'user' : user})
     else:
