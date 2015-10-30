@@ -143,8 +143,8 @@ USE_TZ = True
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-MEDIAFILES_LOCATION = 'media'
-MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+MEDIAFILES_LOCATION = ''
+MEDIA_URL = "https://%s/" % (AWS_S3_CUSTOM_DOMAIN)
 DEFAULT_FILE_STORAGE = 'cloudProject.storage.custom_storages.MediaStorage'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/

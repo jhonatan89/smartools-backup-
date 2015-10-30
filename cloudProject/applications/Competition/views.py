@@ -6,6 +6,7 @@ from django.utils.timezone import utc
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.generic import TemplateView
 from cloudProject.applications.Account.session import Session
+from cloudProject.applications.MongoDB_APP.S3Manager import S3Manager
 
 
 #Import Models
@@ -43,10 +44,13 @@ def index(request):
         ctx= {'competitions':competitions,'form': form, 'user': user}
 
         if request.method == 'POST':
-            form = CreateNewCompetition(request.POST, request.FILES)
+            #form = CreateNewCompetition(request.POST, request.FILES)
             #if form.is_valid():
+            file_path = S3Manager().upload_memory_media('media/ImageCompetitions/' + datetime.now().strftime("%Y/%m/%d"),
+                                                        request.FILES['image'])
+
             Competition().create(username=company, name=request.POST['name'],
-                                      image="image file",
+                                      image=file_path,
                                       description=request.POST['description'],
                                       startDate=request.POST.get('startDate'),
                                       endDate=request.POST.get('endDate'),
