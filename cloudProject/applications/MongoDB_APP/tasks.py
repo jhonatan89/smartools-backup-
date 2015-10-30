@@ -23,7 +23,8 @@ def video_convert(self,id):
         bucket = conn.get_bucket(AWS_STORAGE_BUCKET_NAME)
         video_file = bucket.get_key(str(video.originalVideoPath))
         print "video_file " + video_file.name
-        if not os.path.exists(url_tmp + os.path.abspath(video_file.name)):
+        if not os.path.exists(url_tmp + os.path.dirname(video_file.name)):
+            print "entro a crear"
             os.makedirs(url_tmp + os.path.abspath(video_file.name))
         video_file.get_contents_to_filename(url_tmp + video_file.name)
         print video.originalVideoPath.name + "videoname"
