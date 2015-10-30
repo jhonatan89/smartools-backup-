@@ -54,7 +54,7 @@ class Competition():
     def get_upload_video_url(self):
         print "method upload video url"
         print "id"
-        print self
+        print self.id
         return "/competitions/%s/upload/" % (self.id)
 
     def update_url(self, id, url):
