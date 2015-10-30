@@ -34,6 +34,7 @@ def confirmation_video(request):
 def get_video(request, id_competition):
     list_video = []
     competition = Competition()
+    competition.get(id)
     company = get_cookie(request, 'userId')
     user = Session.verify_current_session(company)
 
