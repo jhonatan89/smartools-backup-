@@ -3,7 +3,7 @@ import boto
 from boto.s3.key import Key
 from django.core.mail import send_mail
 import os
-from cloudProject.applications.Video.models import Video
+from cloudProject.applications.MongoDB_APP.Video import Video
 from cloudProject.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_STORAGE_BUCKET_NAME, MEDIAFILES_LOCATION
 
 from cloudProject.celery import app
@@ -14,7 +14,9 @@ def video_convert(self,id):
     print "Entro a la sqs"
     print str(id) + "title"
     url_tmp = '/tmp/'
-    video = Video.objects.get(id=id)
+    video = Video()
+    video.get(id)
+
 
     try:
         conn = boto.connect_s3(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
