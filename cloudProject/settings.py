@@ -54,6 +54,7 @@ INSTALLED_APPS = (
     'cloudProject.applications.Company',
     'cloudProject.applications.Competition',
     'cloudProject.applications.Account',
+    'cloudProject.applications.MongoDB_APP',
     'bootstrapform',
     'kronos',
     'bootstrap3_datetime',
