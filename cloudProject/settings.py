@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import urllib2
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 #AMAZON AWS
@@ -160,3 +162,14 @@ SERVER_EMAIL = 'smarttoolssaas@gmail.com'
 AWS_SES_REGION_NAME = 'us-west-2'
 AWS_SES_REGION_ENDPOINT = 'email.us-west-2.amazonaws.com'
 
+BROKER_URL = 'sqs://{0}:{1}@'.format(
+    urllib2.quote(AWS_ACCESS_KEY_ID, safe=''),
+    urllib2.quote(AWS_SECRET_ACCESS_KEY, safe='')
+)
+
+BROKER_TRANSPORT_OPTIONS = {
+    'region': 'us-weast-2',
+    'polling_interval': 3,
+    'visibility_timeout': 3600,
+}
+BROKER_TRANSPORT_OPTIONS['queue_name_prefix'] = 'sqsSmart-'
