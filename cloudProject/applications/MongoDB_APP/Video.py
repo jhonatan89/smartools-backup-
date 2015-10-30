@@ -2,6 +2,7 @@ from cloudProject.applications.MongoDB_APP.connection_params import Connection
 
 from bson.objectid import ObjectId
 from datetime import datetime
+from tasks import video_convert
 
 class Video():
 
@@ -36,6 +37,7 @@ class Video():
         videos = Connection().db.Competition.find_one({ "_id" : ObjectId(id_competition)})['videos']
         videos.append(id_video)
         Connection().db.Competition.update( { "_id" : ObjectId(id_competition) }, { "$set" : { 'videos' : videos } } )
+        video_convert.delay(id_video)
 
     def get(self, id, status):
         if status=="ANY":
