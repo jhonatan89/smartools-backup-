@@ -22,6 +22,7 @@ def video_convert(self,id):
         conn = boto.connect_s3(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
         bucket = conn.get_bucket(AWS_STORAGE_BUCKET_NAME)
         video_file = bucket.get_key(str(video.originalVideoPath))
+        print "video_file " + video_file.name
         if not os.path.exists(url_tmp + os.path.abspath(video_file.name)):
             os.makedirs(url_tmp + os.path.abspath(video_file.name))
         video_file.get_contents_to_filename(url_tmp + video_file.name)
