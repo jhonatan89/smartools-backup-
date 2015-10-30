@@ -2,7 +2,6 @@ __author__ = 'agilesfocused'
 import boto
 from boto.s3.key import Key
 from cloudProject.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_STORAGE_BUCKET_NAME, MEDIAFILES_LOCATION
-from datetime import datetime
 
 class S3Manager():
 

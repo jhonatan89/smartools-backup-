@@ -146,6 +146,7 @@ USE_TZ = True
 
 MEDIAFILES_LOCATION = ''
 MEDIA_URL = "https://%s/" % (AWS_S3_CUSTOM_DOMAIN)
+MEDIA_CLOUD_FRONT ="rtmp://s2j7yqs7egvs36.cloudfront.net:1935/mp4:"
 DEFAULT_FILE_STORAGE = 'cloudProject.storage.custom_storages.MediaStorage'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
