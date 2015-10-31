@@ -44,12 +44,12 @@
                     </div>
 
                     <div class="col-md-6">
-                        {% if video.get_state_display == 'Converted' %}
+                        {% if video.state == 'CON' %}
                         CONVERTED VIDEO
                         <div id="convertedvideo{{forloop.counter}}">
                             <script type="text/javascript">
                                 jwplayer('convertedvideo{{forloop.counter}}').setup({
-                                    file:"{{ MEDIA_URL }}{{video.convertedVideoPath}}"
+                                    file:"rtmp://s2j7yqs7egvs36.cloudfront.net:1935/cfx/st/mp4:{{video.convertedVideoPath}}"
                                 });
                             </script>
 
