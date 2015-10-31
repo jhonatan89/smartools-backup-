@@ -169,7 +169,7 @@ BROKER_URL = 'sqs://{0}:{1}@'.format(
 )
 
 BROKER_TRANSPORT_OPTIONS = {
-    'region': 'us-weast-2',
+    'region': 'us-west-2',
     'polling_interval': 3,
     'visibility_timeout': 3600,
 }
