@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 import urllib2
 from memcacheify import memcacheify
+import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -104,15 +105,19 @@ WSGI_APPLICATION = 'cloudProject.wsgi.application'
 #        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #    }
 #}
+# DATABASES = {
+#      'default': {
+#          'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#          'NAME': os.getenv('DBASE_NAME'),
+#          'USER': os.getenv('DBASE_USER'),
+#          'PASSWORD': os.getenv('DBASE_PASS'),
+#          'HOST': os.getenv('DBASE_HOST'),
+#          'PORT': os.getenv('DBASE_PORT')
+#      }
+# }
+
 DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-         'NAME': os.getenv('DBASE_NAME'),
-         'USER': os.getenv('DBASE_USER'),
-         'PASSWORD': os.getenv('DBASE_PASS'),
-         'HOST': os.getenv('DBASE_HOST'),
-         'PORT': os.getenv('DBASE_PORT')
-     }
+         'default': dj_database_url.config()
 }
 
 #DATABASES = {

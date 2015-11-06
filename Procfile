@@ -1,1 +1,1 @@
-web: gunicorn cloudProjectcl.wsgi --log-level -
+web: gunicorn cloudProject.wsgi --log-level -
