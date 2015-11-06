@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import urllib2
+from memcacheify import memcacheify
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -56,7 +57,6 @@ INSTALLED_APPS = (
     'cloudProject.applications.Account',
     'cloudProject.applications.MongoDB_APP',
     'bootstrapform',
-    'kronos',
     'bootstrap3_datetime',
     'storages'
 )
@@ -168,6 +168,10 @@ BROKER_URL = 'sqs://{0}:{1}@'.format(
     urllib2.quote(AWS_ACCESS_KEY_ID, safe=''),
     urllib2.quote(AWS_SECRET_ACCESS_KEY, safe='')
 )
+
+
+CACHES = memcacheify()
+
 
 BROKER_TRANSPORT_OPTIONS = {
     'region': 'us-west-2',

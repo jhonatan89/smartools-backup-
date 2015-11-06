@@ -1,0 +1,1 @@
+web: gunicorn cloudProjectcl.wsgi --log-level -
