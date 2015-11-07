@@ -13,7 +13,7 @@ from cloudProject.celery import app
 def video_convert(self,id):
     print "Entro a la sqs"
     print str(id) + "title"
-    url_tmp = '/tmp/'
+    url_tmp = 'tmp/'
     video = Video()
     video.get(id,"ANY")
 
