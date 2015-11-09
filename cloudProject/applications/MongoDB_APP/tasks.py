@@ -13,7 +13,7 @@ from cloudProject.celery import app
 def video_convert(self,id):
     print "Entro a la sqs"
     print str(id) + "title"
-    #url_tmp = 'tmp/'
+    url_tmp = 'media/video/'
     video = Video()
     video.get(id,"ANY")
 
@@ -22,11 +22,11 @@ def video_convert(self,id):
         conn = boto.connect_s3(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
         bucket = conn.get_bucket(AWS_STORAGE_BUCKET_NAME)
         video_file = bucket.get_key(str(video.originalVideoPath))
-        print "video_file " + video_file.name
-        if not os.path.exists(os.path.dirname(video_file.name)):
-            print "entro a crear"
-            os.makedirs(os.path.dirname(video_file.name))
-        video_file.get_contents_to_filename(video_file.name)
+        # if not os.path.exists(os.path.dirname(video_file.name)):
+        #     print "entro a crear"
+        #     os.makedirs(os.path.dirname(video_file.name))
+        print "ejemplo " + url_tmp + str(os.path.basename(video.originalVideoPath))
+        video_file.get_contents_to_filename(url_tmp + str(os.path.basename(video.originalVideoPath)))
         video_conv = video.originalVideoPath + '.conv.mp4'
         Popen(['ffmpeg', '-i', video_file.name, video_conv]).wait()
         k = Key(bucket)
