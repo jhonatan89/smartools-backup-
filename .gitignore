@@ -45,4 +45,3 @@ target/
 
 #Django
 staticfiles
-/media/*
