@@ -4,6 +4,7 @@ from boto.s3.key import Key
 from django.core.mail import send_mail
 import os
 from cloudProject.applications.MongoDB_APP.Video import Video
+from SendGrid import SendGrid
 from cloudProject.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_STORAGE_BUCKET_NAME, MEDIAFILES_LOCATION
 
 from cloudProject.celery import app
@@ -36,7 +37,8 @@ def video_convert(self,id):
         k.set_contents_from_filename(url_tmp + video_conv)
         video.convertedVideoPath = video_conv
         video.update_to_uploaded()
-        message = '<h2>Hola ' + video.clientfirtsName + ' ' + video.clientLastName + ',</h2><br>' + '<h3>You already can watch your video in our website</h3>' + '<br>' + '<strong>Video:</strong> ' + video.title + '<br>' + '<strong>Video description:</strong> ' + video.description + '<br>' + 'Thanks' + '<br><br>' + 'Sm@rtTools 2015'
-        send_mail('You already is in the competition ', '', 'smarttoolssaas@gmail.com', [video.clientEmail],fail_silently=False, html_message=message)
+        message = '<h2>Hi ' + video.clientfirtsName + ' ' + video.clientLastName + ',</h2><br>' + '<h3>You already can watch your video in our website</h3>' + '<br>' + '<strong>Video:</strong> ' + video.title + '<br>' + '<strong>Video description:</strong> ' + video.description + '<br>' + 'Thanks' + '<br><br>' + 'Sm@rtTools 2015'
+        SendGrid().send_email(message,[video.clientEmail])
+        #send_mail('You already is in the competition ', '', 'smarttoolssaas@gmail.com', [video.clientEmail],fail_silently=False, html_message=message)
     except ValueError:
         print 'There is a error in the convert process'
