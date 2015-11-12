@@ -1,2 +1,2 @@
-web: gunicorn cloudProject.wsgi --log-level -
+web: newrelic-admin run-program gunicorn cloudProject.wsgi --log-level -
 worker: celery -A cloudProject worker
