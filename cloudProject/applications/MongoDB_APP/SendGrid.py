@@ -14,8 +14,8 @@ class SendGrid():
         message.set_html(body)
         message.set_from('smarttoolssaas@gmail.com')
         status, msg = sg.send(message)
-        print "status: " + status
-        print "msg: " + msg
+        print "status: " + str(status)
+        print "msg: " + str(msg)
 
 
 
