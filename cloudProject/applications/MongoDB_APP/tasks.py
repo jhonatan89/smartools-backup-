@@ -38,7 +38,7 @@ def video_convert(self,id):
         video.convertedVideoPath = video_conv
         video.update_to_uploaded()
         message = '<h2>Hi ' + video.clientfirtsName + ' ' + video.clientLastName + ',</h2><br>' + '<h3>You already can watch your video in our website</h3>' + '<br>' + '<strong>Video:</strong> ' + video.title + '<br>' + '<strong>Video description:</strong> ' + video.description + '<br>' + 'Thanks' + '<br><br>' + 'Sm@rtTools 2015'
-        #SendGrid().send_email(message,[video.clientEmail])
-        send_mail('You already is in the competition ', '', 'smarttoolssaas@gmail.com', [video.clientEmail],fail_silently=False, html_message=message)
+        SendGrid().send_email(message,[video.clientEmail])
+        #send_mail('You already is in the competition ', '', 'smarttoolssaas@gmail.com', [video.clientEmail],fail_silently=False, html_message=message)
     except ValueError:
         print 'There is a error in the convert process'
